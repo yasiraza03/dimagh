@@ -1,0 +1,418 @@
+{
+  "id": "language",
+  "code": "HEAR",
+  "title": "Hearing a word",
+  "subtitle": "Pressure waves to meaning in under half a second",
+  "question": "What happens when you hear the word \"elephant\"?",
+  "duration": 10.4,
+  "estimate": "3 min",
+  "lens": "network",
+  "accent": "green",
+  "teaser": "One word, and a whole constellation of meaning lights up around it.",
+  "intro": "A spoken word reaches you as an unbroken stream of sound with no gaps marking where it starts or stops. Within a few hundred milliseconds it has been cut up, compared against tens of thousands of candidates, narrowed to one, and connected to everything you know about elephants. You only experience the last part.",
+  "stages": [
+    {
+      "id": "acoustic",
+      "label": "Acoustic input",
+      "time": 0
+    },
+    {
+      "id": "phono",
+      "label": "Phonological form",
+      "time": 2.0
+    },
+    {
+      "id": "lexical",
+      "label": "Lexical access",
+      "time": 3.6
+    },
+    {
+      "id": "semantic",
+      "label": "Semantic activation",
+      "time": 5.6
+    },
+    {
+      "id": "integrate",
+      "label": "Integration",
+      "time": 8.0
+    }
+  ],
+  "events": [
+    {
+      "id": "sound",
+      "time": 0,
+      "title": "A pressure wave",
+      "explanation": "Changing air pressure becomes a signal and arrives as something with pitch and timing.",
+      "science": "There are no silences between spoken words. The segmentation you experience is something your brain imposed, not something the signal contained.",
+      "activate": [
+        "a1",
+        "thalamus"
+      ],
+      "intensity": 0.9,
+      "hold": 2.2,
+      "stage": "acoustic",
+      "camera": {
+        "move": "focus",
+        "region": "a1",
+        "duration": 1.8
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "structure",
+      "time": 1.0,
+      "title": "Structure in the sound",
+      "explanation": "Starts, stops and the shape of the sound get pulled out. Still just sound, but sound with speech-like structure in it.",
+      "source": "a1",
+      "target": "auditory_assoc",
+      "intensity": 0.95,
+      "hold": 2.4,
+      "stage": "acoustic",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "sensoryNoise": -0.3
+      }
+    },
+    {
+      "id": "phono",
+      "time": 2.1,
+      "title": "Phonological form",
+      "explanation": "The stream gets cut into speech pieces. You are doing that cutting, continuously, and revising it as more arrives.",
+      "activate": [
+        "auditory_assoc"
+      ],
+      "intensity": 0.95,
+      "hold": 2.4,
+      "stage": "phono",
+      "camera": {
+        "move": "focus",
+        "region": "auditory_assoc",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "cohort",
+      "time": 3.0,
+      "title": "Candidates compete",
+      "explanation": "By 'ele-', several words are live at once: elephant, elevator, element, elegant. All of them, at the same time.",
+      "science": "Recognition begins before the word ends. Competition among candidates is measurable in eye movements to pictures of the competitors.",
+      "source": "auditory_assoc",
+      "target": "temporoparietal_lang",
+      "intensity": 0.9,
+      "hold": 2.6,
+      "stage": "lexical",
+      "camera": {
+        "move": "focus",
+        "region": "temporoparietal_lang",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "sensoryNoise": 0.25
+      }
+    },
+    {
+      "id": "select",
+      "time": 4.2,
+      "title": "One candidate wins",
+      "explanation": "As more sound arrives the others get ruled out. Something settles what is left.",
+      "source": "temporoparietal_lang",
+      "target": "inferior_frontal",
+      "intensity": 0.9,
+      "hold": 2.4,
+      "stage": "lexical",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "difficulty": -0.25,
+        "sensoryNoise": -0.3
+      }
+    },
+    {
+      "id": "semantic",
+      "time": 5.7,
+      "title": "Meaning activates",
+      "explanation": "The word connects to what you know: animal, enormous, grey, trunk, Africa, zoos, that documentary.",
+      "science": "Semantic knowledge is distributed rather than stored in a dictionary. Activating 'elephant' partly activates its features, including sensory and motor ones.",
+      "source": "temporoparietal_lang",
+      "target": "fusiform",
+      "activate": [
+        "precuneus",
+        "temporoparietal_lang"
+      ],
+      "intensity": 0.95,
+      "hold": 2.6,
+      "stage": "semantic",
+      "camera": {
+        "move": "orbit",
+        "region": "temporoparietal_lang",
+        "duration": 2.6
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "visual",
+      "time": 6.4,
+      "title": "You see one, slightly",
+      "explanation": "You see one, slightly. Understanding a word about a thing uses some of the machinery for actually seeing that thing.",
+      "science": "Grounded or embodied accounts of semantics propose that conceptual knowledge reuses sensory and motor systems. How central this is to meaning remains debated.",
+      "source": "fusiform",
+      "target": "object_cortex",
+      "intensity": 0.7,
+      "hold": 2.2,
+      "stage": "semantic",
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "episodic",
+      "time": 7.0,
+      "title": "Personal associations",
+      "explanation": "If you have a particular memory involving an elephant, it may surface without being asked. Facts and memories are not kept apart.",
+      "source": "temporoparietal_lang",
+      "target": "hippocampus",
+      "intensity": 0.65,
+      "hold": 2.2,
+      "stage": "semantic",
+      "kind": "forward",
+      "mods": {
+        "novelty": -0.2
+      }
+    },
+    {
+      "id": "syntax",
+      "time": 8.1,
+      "title": "Integration into structure",
+      "explanation": "The word gets fitted into the sentence being built. Its job depends on what came before and limits what can come next.",
+      "source": "temporoparietal_lang",
+      "target": "inferior_frontal",
+      "activate": [
+        "inferior_frontal",
+        "dlpfc"
+      ],
+      "intensity": 0.9,
+      "hold": 2.0,
+      "stage": "integrate",
+      "camera": {
+        "move": "focus",
+        "region": "inferior_frontal",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "loop"
+    },
+    {
+      "id": "predict",
+      "time": 8.8,
+      "title": "And the next word is predicted",
+      "explanation": "Expectations about the next word get generated and sent back. Understanding runs slightly ahead of the sound.",
+      "science": "Violated predictions produce measurable responses in brain activity within a few hundred milliseconds, which is strong evidence that the prediction was already there.",
+      "source": "inferior_frontal",
+      "target": "auditory_assoc",
+      "intensity": 0.75,
+      "hold": 1.2,
+      "stage": "integrate",
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "aware",
+      "time": 9.5,
+      "title": "You simply heard a word",
+      "explanation": "All of the above happened. What reached you was: elephant.",
+      "activate": [
+        "temporoparietal_lang",
+        "inferior_frontal",
+        "fusiform",
+        "precuneus"
+      ],
+      "intensity": 0.7,
+      "hold": 0.8,
+      "stage": "integrate",
+      "camera": {
+        "move": "overview",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "loop"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "l1",
+      "label": "Acoustic signal",
+      "detail": "Unbroken sound, with no word boundaries anywhere in it.",
+      "regions": [
+        "a1"
+      ],
+      "event": "sound"
+    },
+    {
+      "id": "l2",
+      "label": "Speech structure",
+      "detail": "Starts, stops and shape get pulled out of the stream.",
+      "regions": [
+        "auditory_assoc"
+      ],
+      "event": "structure"
+    },
+    {
+      "id": "l3",
+      "label": "Phonological units",
+      "detail": "The stream gets cut into speech pieces — by you, not by the sound.",
+      "regions": [
+        "auditory_assoc"
+      ],
+      "event": "phono"
+    },
+    {
+      "id": "l4",
+      "label": "Candidates compete",
+      "detail": "Several possible words are live at once before the word has finished.",
+      "regions": [
+        "temporoparietal_lang"
+      ],
+      "event": "cohort"
+    },
+    {
+      "id": "l5",
+      "label": "One is selected",
+      "detail": "The others get ruled out as more evidence arrives.",
+      "regions": [
+        "inferior_frontal",
+        "temporoparietal_lang"
+      ],
+      "event": "select"
+    },
+    {
+      "id": "l6",
+      "label": "Meaning activates",
+      "detail": "Meaning wakes up, including what the thing looks and sounds like.",
+      "regions": [
+        "fusiform",
+        "object_cortex",
+        "precuneus"
+      ],
+      "event": "semantic"
+    },
+    {
+      "id": "l7",
+      "label": "Structural integration",
+      "detail": "The word takes a role in the sentence being built.",
+      "regions": [
+        "inferior_frontal"
+      ],
+      "event": "syntax"
+    },
+    {
+      "id": "l8",
+      "label": "Prediction",
+      "detail": "Expectations about the next word get sent back down.",
+      "regions": [
+        "auditory_assoc"
+      ],
+      "event": "predict"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Spoken word recognition begins before the word is complete, and multiple lexical candidates are briefly active in parallel."
+    },
+    {
+      "tier": "known",
+      "text": "Auditory cortex is organised by sound frequency, and superior temporal regions track the syllable- and phrase-rate structure of speech."
+    },
+    {
+      "tier": "known",
+      "text": "Words that violate a strong contextual prediction produce distinctive brain responses within a few hundred milliseconds."
+    },
+    {
+      "tier": "known",
+      "text": "Language relies on a distributed left-dominant network. The classical two-area account is widely regarded as too simple."
+    },
+    {
+      "tier": "simplified",
+      "text": "We draw sound → phonology → lexicon → semantics as four sequential stages. They overlap heavily, and later stages influence earlier ones."
+    },
+    {
+      "tier": "simplified",
+      "text": "The semantic constellation shows a handful of hand-picked associations. Real semantic structure is high-dimensional and specific to each person's experience."
+    },
+    {
+      "tier": "conceptual",
+      "text": "The node positions in the constellation are chosen for legibility. Distance in that layout is not a measured semantic distance."
+    },
+    {
+      "tier": "conceptual",
+      "text": "This scenario describes typical adult comprehension of a familiar word. It is not a model of language acquisition or of language disorders."
+    }
+  ],
+  "references": [
+    {
+      "label": "Cohort models of word recognition",
+      "note": "Accounts in which a set of candidates consistent with the input so far is active and narrows as more input arrives."
+    },
+    {
+      "label": "Dual-stream language models",
+      "note": "Frameworks dividing language processing into a dorsal pathway for sound-to-articulation mapping and a ventral pathway for sound-to-meaning."
+    },
+    {
+      "label": "Prediction in comprehension",
+      "note": "Electrophysiological work showing that comprehenders anticipate upcoming words and that violations are rapidly detected."
+    },
+    {
+      "label": "Distributed semantics",
+      "note": "Evidence that conceptual knowledge is represented across many regions, partly reusing sensory and motor systems."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "clarity",
+      "label": "Lexical resolution",
+      "base": 0.85,
+      "mods": {
+        "sensoryNoise": -0.5,
+        "attention": 0.2,
+        "difficulty": -0.2
+      },
+      "note": "How decisively the model settles on one word.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "spread",
+      "label": "Semantic spread",
+      "base": 0.6,
+      "mods": {
+        "novelty": 0.3,
+        "attention": 0.2,
+        "memoryLoad": -0.2
+      },
+      "note": "How widely related meaning wakes up around it.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "prediction",
+      "label": "Predictive engagement",
+      "base": 0.55,
+      "mods": {
+        "sensoryNoise": 0.35,
+        "attention": 0.2
+      },
+      "note": "How much the model leans on expectation. Noisier sound means more leaning.",
+      "polarity": "neutral"
+    }
+  ],
+  "outcome": {
+    "headline": "Hearing a word",
+    "body": "Unbroken sound got cut up, matched against competing possibilities, narrowed to one, connected to a web of meaning, fitted into a sentence, and used to guess what comes next.",
+    "insight": "You experienced none of the competition. The words that lost never reached you — and the winner felt like it arrived already meaning something, rather than being given a meaning on the way in."
+  },
+  "companion": "language"
+}

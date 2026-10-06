@@ -1,0 +1,485 @@
+{
+  "id": "sleep",
+  "code": "SLEEP",
+  "title": "A night of sleep",
+  "subtitle": "The brain does not switch off — it switches mode",
+  "question": "What happens in your brain while you sleep?",
+  "duration": 14.0,
+  "estimate": "4 min",
+  "lens": "network",
+  "accent": "blue",
+  "teaser": "Squeeze eight hours into one dial and watch your brain change mode.",
+  "intro": "Sleep is not your brain switching off. It is a sequence of different modes, each with its own pattern of activity, cycling several times a night. Memory, cleaning up, and how well you think the next day all depend on that sequence actually happening.",
+  "stages": [
+    {
+      "id": "awake",
+      "label": "Awake",
+      "time": 0
+    },
+    {
+      "id": "n1",
+      "label": "N1 — drifting off",
+      "time": 2.0
+    },
+    {
+      "id": "n2",
+      "label": "N2 — light sleep",
+      "time": 4.0
+    },
+    {
+      "id": "n3",
+      "label": "N3 — deep sleep",
+      "time": 6.6
+    },
+    {
+      "id": "rem",
+      "label": "REM",
+      "time": 9.6
+    },
+    {
+      "id": "cycle",
+      "label": "And again",
+      "time": 12.4
+    }
+  ],
+  "events": [
+    {
+      "id": "awake",
+      "time": 0,
+      "title": "Awake",
+      "explanation": "Systems deep in your brain hold the central gate open. Information flows, your brain responds to it, and you can form memories of what happens.",
+      "activate": [
+        "brainstem",
+        "locus_coeruleus",
+        "thalamus",
+        "dlpfc",
+        "v1",
+        "a1"
+      ],
+      "intensity": 0.9,
+      "hold": 2.0,
+      "stage": "awake",
+      "camera": {
+        "move": "overview",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "switch",
+      "time": 1.4,
+      "title": "The switch flips",
+      "explanation": "Circuitry at the base tips the balance. This is closer to a switch flipping than a gradual fade.",
+      "science": "Sleep–wake switching circuits are mutually inhibitory, which makes the transition relatively fast and the intermediate states unstable.",
+      "source": "hypothalamus",
+      "target": "brainstem",
+      "intensity": 0.9,
+      "hold": 1.6,
+      "stage": "awake",
+      "camera": {
+        "move": "focus",
+        "region": "hypothalamus",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "burst"
+    },
+    {
+      "id": "n1",
+      "time": 2.1,
+      "title": "N1 — the threshold",
+      "explanation": "Alertness drops. Thoughts get fragmentary, muscles relax, and you may not be sure whether you were asleep.",
+      "source": "brainstem",
+      "target": "thalamus",
+      "activate": [
+        "thalamus"
+      ],
+      "intensity": 0.6,
+      "hold": 1.8,
+      "stage": "n1",
+      "camera": {
+        "move": "focus",
+        "region": "thalamus",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "modulatory"
+    },
+    {
+      "id": "gate",
+      "time": 3.2,
+      "title": "The gate begins to close",
+      "explanation": "The gate starts closing. Sound still reaches you — it just stops spreading through the brain. That is why a noise can register and not wake you.",
+      "science": "This is why a sound can be loud enough to register and still not wake you. The input is not blocked at the ear.",
+      "source": "thalamus",
+      "target": "v1",
+      "intensity": 0.5,
+      "hold": 2.0,
+      "stage": "n1",
+      "causal": true,
+      "kind": "modulatory"
+    },
+    {
+      "id": "n2",
+      "time": 4.1,
+      "title": "N2 — spindles and bursts",
+      "explanation": "Short bursts of coordinated activity appear. How many you get relates to how well you hold on to things you learned that day.",
+      "science": "Spindle density correlates with overnight retention of recently learned material. The relationship is robust, though its causal interpretation is still being worked out.",
+      "source": "thalamus",
+      "target": "dlpfc",
+      "activate": [
+        "thalamus",
+        "dlpfc",
+        "precuneus"
+      ],
+      "intensity": 0.75,
+      "hold": 2.4,
+      "stage": "n2",
+      "camera": {
+        "move": "orbit",
+        "region": "thalamus",
+        "duration": 2.6
+      },
+      "causal": true,
+      "kind": "burst"
+    },
+    {
+      "id": "replay-n2",
+      "time": 5.2,
+      "title": "Reactivation begins",
+      "explanation": "Patterns from your day get replayed in bursts, with nothing happening to trigger them.",
+      "source": "hippocampus",
+      "target": "precuneus",
+      "via": "hpc-pcun-sleep",
+      "intensity": 0.8,
+      "hold": 2.2,
+      "stage": "n2",
+      "causal": true,
+      "kind": "burst",
+      "mods": {
+        "memoryLoad": 0.25
+      }
+    },
+    {
+      "id": "n3",
+      "time": 6.7,
+      "title": "N3 — deep sleep",
+      "explanation": "Huge numbers of cells switch between active and silent almost in unison. This is the most synchronised your brain ever gets.",
+      "science": "Slow-wave activity is deepest early in the night and is associated with restorative processes and with the consolidation of recent declarative material.",
+      "activate": [
+        "thalamus",
+        "precuneus",
+        "v1",
+        "dlpfc",
+        "a1",
+        "parietal"
+      ],
+      "intensity": 1.0,
+      "hold": 2.6,
+      "stage": "n3",
+      "camera": {
+        "move": "wide",
+        "duration": 2.8
+      },
+      "causal": true,
+      "kind": "loop"
+    },
+    {
+      "id": "consolidate",
+      "time": 7.7,
+      "title": "Coordinated consolidation",
+      "explanation": "The replay, the bursts and the slow rhythm line up in time with each other. The lining-up itself seems to be the part that matters.",
+      "science": "Experimentally enhancing or disrupting the coupling between these rhythms changes overnight retention, which is some of the strongest evidence that sleep does memory work rather than merely coinciding with it.",
+      "source": "hippocampus",
+      "target": "fusiform",
+      "via": "hpc-fus-sleep",
+      "activate": [
+        "hippocampus",
+        "entorhinal"
+      ],
+      "intensity": 0.95,
+      "hold": 2.4,
+      "stage": "n3",
+      "camera": {
+        "move": "focus",
+        "region": "hippocampus",
+        "duration": 1.8
+      },
+      "causal": true,
+      "kind": "burst",
+      "mods": {
+        "memoryLoad": 0.3
+      }
+    },
+    {
+      "id": "rem-switch",
+      "time": 9.2,
+      "title": "Into REM",
+      "explanation": "Another switch. Your brain starts looking much more like it does awake, while your muscles are actively held still.",
+      "source": "brainstem",
+      "target": "thalamus",
+      "intensity": 0.9,
+      "hold": 1.6,
+      "stage": "rem",
+      "camera": {
+        "move": "focus",
+        "region": "brainstem",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "burst"
+    },
+    {
+      "id": "rem",
+      "time": 9.9,
+      "title": "REM — vivid, internally generated experience",
+      "explanation": "Seeing and feeling systems are very busy. The parts that hold goals and check whether things make sense are much less so — which fits how dreams go.",
+      "science": "Dreaming is not exclusive to REM and REM is not purely dreaming. The correlation is strong and the identity is not.",
+      "activate": [
+        "v1",
+        "object_cortex",
+        "fusiform",
+        "amygdala",
+        "precuneus",
+        "hippocampus"
+      ],
+      "intensity": 0.95,
+      "hold": 2.6,
+      "stage": "rem",
+      "camera": {
+        "move": "orbit",
+        "region": "object_cortex",
+        "duration": 2.8
+      },
+      "causal": true,
+      "kind": "loop"
+    },
+    {
+      "id": "atonia",
+      "time": 10.6,
+      "title": "The body is held still",
+      "explanation": "Signals going down keep your muscles still so you do not act out what is happening. When that fails, people really do act out their dreams.",
+      "source": "brainstem",
+      "target": "muscle",
+      "intensity": 0.8,
+      "hold": 2.0,
+      "stage": "rem",
+      "causal": true,
+      "kind": "modulatory"
+    },
+    {
+      "id": "emotional",
+      "time": 11.3,
+      "title": "Emotional processing",
+      "explanation": "Emotional systems are active while the parts that usually damp them down are quiet. This phase seems to help process the day's feelings.",
+      "source": "amygdala",
+      "target": "hippocampus",
+      "intensity": 0.8,
+      "hold": 1.8,
+      "stage": "rem",
+      "kind": "forward"
+    },
+    {
+      "id": "cycle",
+      "time": 12.5,
+      "title": "And the cycle repeats",
+      "explanation": "And round again, roughly every ninety minutes, four to six times a night. The mix shifts: deep sleep early, dreaming sleep toward morning.",
+      "science": "This is why sleeping four hours is not half a night's sleep. The two halves of the night are doing different work.",
+      "activate": [
+        "thalamus",
+        "hypothalamus",
+        "brainstem",
+        "hippocampus"
+      ],
+      "intensity": 0.7,
+      "hold": 1.2,
+      "stage": "cycle",
+      "camera": {
+        "move": "overview",
+        "duration": 2.6
+      },
+      "causal": true,
+      "kind": "loop"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "s1",
+      "label": "Wake is actively maintained",
+      "detail": "Staying awake is something your brain actively does, not a default.",
+      "regions": [
+        "brainstem",
+        "locus_coeruleus",
+        "thalamus"
+      ],
+      "event": "awake"
+    },
+    {
+      "id": "s2",
+      "label": "A switch flips",
+      "detail": "A switch flips, quickly rather than gradually.",
+      "regions": [
+        "hypothalamus",
+        "brainstem"
+      ],
+      "event": "switch"
+    },
+    {
+      "id": "s3",
+      "label": "Transmission mode changes",
+      "detail": "Sound still arrives but stops spreading.",
+      "regions": [
+        "thalamus",
+        "v1"
+      ],
+      "event": "gate"
+    },
+    {
+      "id": "s4",
+      "label": "Coordinated bursts appear",
+      "detail": "Bursts of activity appear, tied to holding on to what you learned.",
+      "regions": [
+        "thalamus",
+        "dlpfc"
+      ],
+      "event": "n2"
+    },
+    {
+      "id": "s5",
+      "label": "Deep synchronisation",
+      "detail": "Huge numbers of cells start switching on and off together.",
+      "regions": [
+        "precuneus",
+        "parietal",
+        "v1"
+      ],
+      "event": "n3"
+    },
+    {
+      "id": "s6",
+      "label": "Rhythms couple",
+      "detail": "Replay, bursts and slow rhythm line up in time.",
+      "regions": [
+        "hippocampus",
+        "fusiform"
+      ],
+      "event": "consolidate"
+    },
+    {
+      "id": "s7",
+      "label": "REM begins",
+      "detail": "Your brain goes wake-like while your muscles are held still.",
+      "regions": [
+        "brainstem",
+        "muscle"
+      ],
+      "event": "rem-switch"
+    },
+    {
+      "id": "s8",
+      "label": "Internally generated experience",
+      "detail": "Vivid experience is generated with nothing coming in from outside.",
+      "regions": [
+        "v1",
+        "object_cortex",
+        "amygdala"
+      ],
+      "event": "rem"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Sleep consists of distinct, identifiable global states that cycle several times per night with a period of roughly ninety minutes."
+    },
+    {
+      "tier": "known",
+      "text": "Deep slow-wave sleep predominates in the first half of the night and REM in the second."
+    },
+    {
+      "tier": "known",
+      "text": "Most skeletal muscle is actively inhibited during REM sleep; failure of this inhibition is a recognised clinical disorder."
+    },
+    {
+      "tier": "known",
+      "text": "Experimentally disrupting sleep after learning impairs retention, and enhancing specific sleep rhythms can improve it."
+    },
+    {
+      "tier": "simplified",
+      "text": "We show one clean cycle. A real night is irregular, with varying stage durations, brief awakenings and considerable individual variation."
+    },
+    {
+      "tier": "simplified",
+      "text": "The circular timeline compresses roughly eight hours into fourteen seconds. The proportions are representative of a typical night, not of any particular one."
+    },
+    {
+      "tier": "conceptual",
+      "text": "This is not an EEG simulator. The waveform drawn on the dial is a stylised illustration of how synchronisation changes between states — it is not generated from a model of cortical electrical activity, and it is not anyone's recording."
+    },
+    {
+      "tier": "conceptual",
+      "text": "Nothing here is sleep-tracking or health advice. Sleep varies enormously between people and across the lifespan."
+    }
+  ],
+  "references": [
+    {
+      "label": "Sleep staging",
+      "note": "The standard classification of sleep into N1, N2, N3 and REM, based on characteristic electrophysiological signatures."
+    },
+    {
+      "label": "Sleep-dependent consolidation",
+      "note": "Evidence that sleep after learning benefits retention, with different stages implicated in different kinds of material."
+    },
+    {
+      "label": "Flip-flop switch model",
+      "note": "An account of sleep–wake transitions as mutually inhibitory circuits producing fast state changes."
+    },
+    {
+      "label": "Rhythm coupling",
+      "note": "Work on the temporal nesting of hippocampal reactivation, thalamocortical spindles and cortical slow oscillations."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "consolidation",
+      "label": "Modelled consolidation",
+      "base": 0.7,
+      "mods": {
+        "memoryLoad": 0.3,
+        "distraction": -0.25,
+        "novelty": 0.2
+      },
+      "note": "How much memory work the modelled night gets done.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "depth",
+      "label": "Synchronisation depth",
+      "base": 0.75,
+      "mods": {
+        "sensoryNoise": -0.4,
+        "novelty": -0.2
+      },
+      "note": "How deeply the modelled brain synchronises. Disturbance breaks it up.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "remShare",
+      "label": "REM share",
+      "base": 0.45,
+      "mods": {
+        "novelty": 0.25,
+        "memoryLoad": 0.15
+      },
+      "note": "How much of the modelled night is spent dreaming.",
+      "polarity": "neutral"
+    }
+  ],
+  "outcome": {
+    "headline": "Sleeping",
+    "body": "The gate opened and closed, your brain moved through several different modes, the day's experiences were replayed and made more stable, and a wake-like phase generated vivid experience while your body stayed completely still.",
+    "insight": "None of this is downtime. The sequence does work that cannot be done while you are awake — and the second half of the night does a different job from the first."
+  },
+  "companion": "sleep"
+}

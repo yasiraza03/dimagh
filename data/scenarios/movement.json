@@ -1,0 +1,431 @@
+{
+  "id": "movement",
+  "code": "MOVE",
+  "title": "Reaching for a target",
+  "subtitle": "Prediction, because feedback is too slow",
+  "question": "What happens when you move your hand?",
+  "duration": 10.8,
+  "estimate": "3 min",
+  "lens": "activity",
+  "accent": "orange",
+  "teaser": "Hit a target, then add some wobble and watch the correction system earn its keep.",
+  "intro": "Moving your arm accurately is harder than it looks, because the feedback from your body arrives too late to steer with. The fix is to predict what the movement should feel like, compare that against what actually happens, and correct the difference. You never notice any of this, because it works.",
+  "stages": [
+    {
+      "id": "target",
+      "label": "Target acquisition",
+      "time": 0
+    },
+    {
+      "id": "plan",
+      "label": "Planning",
+      "time": 2.2
+    },
+    {
+      "id": "predict",
+      "label": "Forward model",
+      "time": 3.6
+    },
+    {
+      "id": "execute",
+      "label": "Execution",
+      "time": 5.0
+    },
+    {
+      "id": "feedback",
+      "label": "Feedback",
+      "time": 6.8
+    },
+    {
+      "id": "correct",
+      "label": "Correction",
+      "time": 8.6
+    }
+  ],
+  "events": [
+    {
+      "id": "see",
+      "time": 0,
+      "title": "The target is located",
+      "explanation": "Information about the target reaches the back of your brain and gets turned into a position.",
+      "source": "v1",
+      "target": "mt",
+      "activate": [
+        "v1",
+        "visual_feature",
+        "retina"
+      ],
+      "intensity": 0.85,
+      "hold": 2.0,
+      "stage": "target",
+      "camera": {
+        "move": "focus",
+        "region": "v1",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "where",
+      "time": 0.9,
+      "title": "Where, in body coordinates",
+      "explanation": "That position gets converted into something your arm can use — combined with where your arm currently is.",
+      "science": "This transformation is non-trivial: the eyes, head and hand all move independently, so 'where it is' has to be recomputed continuously.",
+      "source": "mt",
+      "target": "parietal",
+      "activate": [
+        "somatosensory"
+      ],
+      "intensity": 0.9,
+      "hold": 2.4,
+      "stage": "target",
+      "camera": {
+        "move": "focus",
+        "region": "parietal",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "decide",
+      "time": 1.8,
+      "title": "Commit to moving",
+      "explanation": "A decision to move is settled, and one action gets released while the others are held back.",
+      "source": "parietal",
+      "target": "premotor",
+      "activate": [
+        "dlpfc",
+        "basal_ganglia"
+      ],
+      "intensity": 0.9,
+      "hold": 2.2,
+      "stage": "plan",
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "plan",
+      "time": 2.5,
+      "title": "The movement is specified",
+      "explanation": "The movement gets worked out: which direction, how far, how fast, how your hand should be angled when it arrives.",
+      "science": "Planning activity is measurable before movement onset, and its pattern predicts properties of the movement that follows.",
+      "source": "basal_ganglia",
+      "target": "premotor",
+      "intensity": 0.95,
+      "hold": 2.4,
+      "stage": "plan",
+      "camera": {
+        "move": "focus",
+        "region": "premotor",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "difficulty": -0.25
+      }
+    },
+    {
+      "id": "forward-model",
+      "time": 3.7,
+      "title": "A prediction is issued",
+      "explanation": "A copy of the command goes to the back of your brain, which predicts what the movement will feel like before it happens.",
+      "science": "This is the forward-model account. It explains, among other things, why you cannot tickle yourself: the predicted sensation is cancelled against the actual one.",
+      "source": "premotor",
+      "target": "cerebellum",
+      "intensity": 0.9,
+      "hold": 2.8,
+      "stage": "predict",
+      "camera": {
+        "move": "focus",
+        "region": "cerebellum",
+        "duration": 1.8
+      },
+      "causal": true,
+      "kind": "modulatory"
+    },
+    {
+      "id": "command",
+      "time": 5.1,
+      "title": "Command issued",
+      "explanation": "The command is sent. What matters here is direction and force, not individual muscles.",
+      "source": "premotor",
+      "target": "motor_cortex",
+      "intensity": 1.0,
+      "hold": 2.2,
+      "stage": "execute",
+      "camera": {
+        "move": "focus",
+        "region": "motor_cortex",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "muscle",
+      "time": 5.9,
+      "title": "The arm moves",
+      "explanation": "Your arm moves. Wobble creeps in here — in the command, in the muscles, and in the weight of your own arm.",
+      "science": "Motor noise scales with force. Faster, stronger movements are intrinsically less precise, which is the basis of the speed–accuracy trade-off.",
+      "source": "motor_cortex",
+      "target": "muscle",
+      "intensity": 1.0,
+      "hold": 1.8,
+      "stage": "execute",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "sensoryNoise": 0.3,
+        "difficulty": 0.25
+      }
+    },
+    {
+      "id": "feedback",
+      "time": 6.9,
+      "title": "Feedback returns",
+      "explanation": "Touch and position signals come back — but late enough that steering by them alone would make your arm oscillate.",
+      "source": "muscle",
+      "target": "somatosensory",
+      "intensity": 0.9,
+      "hold": 2.0,
+      "stage": "feedback",
+      "camera": {
+        "move": "focus",
+        "region": "somatosensory",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "compare",
+      "time": 7.7,
+      "title": "Prediction versus outcome",
+      "explanation": "What was predicted gets compared with what happened. The difference is the error.",
+      "source": "somatosensory",
+      "target": "cerebellum",
+      "intensity": 0.9,
+      "hold": 2.0,
+      "stage": "feedback",
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "correct",
+      "time": 8.7,
+      "title": "Correction, mid-flight",
+      "explanation": "That error is fixed while the movement is still going. You experience one smooth reach.",
+      "source": "cerebellum",
+      "target": "motor_cortex",
+      "intensity": 0.9,
+      "hold": 1.6,
+      "stage": "correct",
+      "camera": {
+        "move": "orbit",
+        "region": "cerebellum",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "loop",
+      "mods": {
+        "sensoryNoise": -0.3,
+        "attention": 0.2
+      }
+    },
+    {
+      "id": "learn",
+      "time": 9.6,
+      "title": "And the model updates",
+      "explanation": "If the error keeps happening, the prediction itself gets changed. That is how you adapt to a heavier racket, a new mouse, or a cast on your arm.",
+      "science": "Motor adaptation to a systematic perturbation is rapid, largely implicit, and produces an after-effect in the opposite direction when the perturbation is removed.",
+      "source": "cerebellum",
+      "target": "thalamus",
+      "activate": [
+        "cerebellum",
+        "premotor"
+      ],
+      "intensity": 0.75,
+      "hold": 1.0,
+      "stage": "correct",
+      "camera": {
+        "move": "overview",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "loop"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "v1",
+      "label": "Target located",
+      "detail": "Information about the target arrives at the back of your brain.",
+      "regions": [
+        "v1",
+        "mt"
+      ],
+      "event": "see"
+    },
+    {
+      "id": "v2",
+      "label": "Converted to body coordinates",
+      "detail": "It gets converted into where it is relative to your hand.",
+      "regions": [
+        "parietal",
+        "somatosensory"
+      ],
+      "event": "where"
+    },
+    {
+      "id": "v3",
+      "label": "Action selected",
+      "detail": "One movement is released; the alternatives are held back.",
+      "regions": [
+        "basal_ganglia",
+        "dlpfc"
+      ],
+      "event": "decide"
+    },
+    {
+      "id": "v4",
+      "label": "Trajectory specified",
+      "detail": "Direction, distance, speed and hand angle get worked out.",
+      "regions": [
+        "premotor"
+      ],
+      "event": "plan"
+    },
+    {
+      "id": "v5",
+      "label": "Consequences predicted",
+      "detail": "A prediction is made of what the movement will feel like.",
+      "regions": [
+        "cerebellum"
+      ],
+      "event": "forward-model"
+    },
+    {
+      "id": "v6",
+      "label": "Command executed",
+      "detail": "The command goes down and your muscles produce force.",
+      "regions": [
+        "motor_cortex",
+        "muscle"
+      ],
+      "event": "command"
+    },
+    {
+      "id": "v7",
+      "label": "Feedback returns, late",
+      "detail": "Feedback comes back too late to steer with directly.",
+      "regions": [
+        "somatosensory"
+      ],
+      "event": "feedback"
+    },
+    {
+      "id": "v8",
+      "label": "Error computed and corrected",
+      "detail": "Predicted and actual get compared, and the gap fixes the movement.",
+      "regions": [
+        "cerebellum",
+        "motor_cortex"
+      ],
+      "event": "correct"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Sensory feedback delays are long relative to the duration of a fast reach, so feedback alone cannot account for the accuracy observed."
+    },
+    {
+      "tier": "known",
+      "text": "Motor variability scales with the magnitude of the motor command, producing a systematic speed–accuracy trade-off."
+    },
+    {
+      "tier": "known",
+      "text": "Cerebellar damage produces characteristic coordination and timing deficits, including movements that overshoot and oscillate around a target."
+    },
+    {
+      "tier": "known",
+      "text": "Adaptation to a systematic motor perturbation is rapid and produces an after-effect when the perturbation is removed."
+    },
+    {
+      "tier": "simplified",
+      "text": "We show one forward model in one structure. Prediction and correction are distributed across cerebellum, cortex and spinal circuits, operating at several timescales at once."
+    },
+    {
+      "tier": "simplified",
+      "text": "The trajectory drawn in the task panel is generated by a simple noise-and-correction model written for this page. It is an illustration of the principle, not a biomechanical simulation."
+    },
+    {
+      "tier": "conceptual",
+      "text": "The noise slider changes a parameter in that model. It does not correspond to a measurable quantity in anyone's motor system."
+    }
+  ],
+  "references": [
+    {
+      "label": "Forward models in motor control",
+      "note": "The proposal that the brain predicts the sensory consequences of its own commands, used to explain self-generated sensation cancellation and rapid correction."
+    },
+    {
+      "label": "Signal-dependent noise",
+      "note": "Work deriving the speed–accuracy trade-off from noise that scales with the size of the motor command."
+    },
+    {
+      "label": "Cerebellar internal models",
+      "note": "Evidence associating the cerebellum with prediction, timing and error-driven adaptation."
+    },
+    {
+      "label": "Optimal feedback control",
+      "note": "A framework treating movement as feedback control that corrects only the deviations that matter for the task goal."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "precision",
+      "label": "Endpoint precision",
+      "base": 0.75,
+      "mods": {
+        "sensoryNoise": -0.5,
+        "attention": 0.25,
+        "difficulty": -0.3
+      },
+      "note": "How close the modelled hand lands to the target.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "correction",
+      "label": "Correction load",
+      "base": 0.4,
+      "mods": {
+        "sensoryNoise": 0.5,
+        "difficulty": 0.25
+      },
+      "note": "How much work the correction loop has to do. Higher means a messier path to the same place.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "adaptation",
+      "label": "Model update rate",
+      "base": 0.5,
+      "mods": {
+        "novelty": 0.35,
+        "attention": 0.2,
+        "memoryLoad": -0.2
+      },
+      "note": "How quickly the prediction itself gets updated after repeated errors.",
+      "polarity": "neutral"
+    }
+  ],
+  "outcome": {
+    "headline": "Moving",
+    "body": "A target was found, converted into something your arm could use, turned into a plan, predicted before it happened, carried out, measured, and corrected — all while the movement was still going.",
+    "insight": "Feedback arrives too late to steer with. Every accurate movement you make is mostly a prediction, with the error quietly subtracted out before you notice there was one."
+  },
+  "companion": "movement"
+}

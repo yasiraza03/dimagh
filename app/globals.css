@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ *
+ * dimagh — base layer
+ * ------------------------------------------------------------------ */
+
+@layer base {
+  :root {
+    --void: #040507;
+    --bone: #f2ede4;
+    --hair: rgba(255, 255, 255, 0.07);
+    --hair-strong: rgba(255, 255, 255, 0.14);
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    background: var(--void);
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--void);
+    color: var(--bone);
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-weight: 400;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior-y: none;
+  }
+
+  /* The brain is the hero; selection highlights should be quiet. */
+  ::selection {
+    background: rgba(79, 216, 232, 0.25);
+    color: #fff;
+  }
+
+  /* Visible focus everywhere, which is non-negotiable for a keyboard path
+     through an experience built mostly out of canvas. */
+  :focus-visible {
+    outline: 1px solid #4fd8e8;
+    outline-offset: 2px;
+  }
+
+  button,
+  [role='button'] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  /* Thin, dark scrollbars — a full-bleed black UI with default bars looks
+     unfinished. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.26);
+  }
+}
+
+@layer components {
+  /* Small-caps technical label — the typographic signature of the HUD. */
+  .instrument {
+    @apply font-mono text-[10px] font-normal uppercase tracking-instrument text-bone-dim;
+  }
+
+  .instrument-sm {
+    @apply font-mono text-[9px] font-normal uppercase tracking-wider2 text-bone-faint;
+  }
+
+  /* Hairline panel. Deliberately almost-invisible borders: the UI should feel
+     etched onto the black rather than stacked on top of it.
+
+     Backdrop-blur is kept to panels of this size only. A viewport-sized
+     backdrop-filter over a continuously-rendering WebGL canvas makes the
+     compositor re-sample the whole canvas every frame, which shows up as the
+     surface flickering on and off. Full-width sections use an opaque fill. */
+  .panel {
+    @apply border border-white/[0.07] bg-void-900/70 backdrop-blur-md;
+  }
+
+  .panel-solid {
+    @apply border border-white/[0.07] bg-void-800;
+  }
+
+  .hairline {
+    @apply border-white/[0.07];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 border border-white/[0.12] bg-white/[0.02]
+           px-4 py-2 font-mono text-[11px] font-normal uppercase tracking-instrument text-bone-dim
+           transition-all duration-200 hover:border-white/30 hover:bg-white/[0.06] hover:text-bone
+           focus-visible:border-signal-cyan disabled:opacity-35 disabled:hover:border-white/[0.12];
+  }
+
+  .btn-primary {
+    @apply border-signal-cyan/40 bg-signal-cyan/[0.08] text-signal-cyan
+           hover:border-signal-cyan hover:bg-signal-cyan/[0.14] hover:text-signal-cyan;
+  }
+
+  .btn-icon {
+    @apply inline-flex h-9 w-9 items-center justify-center border border-white/[0.12]
+           bg-white/[0.02] text-bone-dim transition-all duration-200
+           hover:border-white/30 hover:bg-white/[0.06] hover:text-bone
+           focus-visible:border-signal-cyan disabled:opacity-35;
+  }
+
+  /* Editorial display type used for section transitions. */
+  /* Display type is light and large. Weight comes from scale and whitespace,
+     not from stroke — a heavy grotesk at this size reads as a logo, not as an
+     instrument. Sizes are capped well below the viewport so three lines of
+     display always fit a short laptop screen without clipping. */
+  .display-xl {
+    @apply font-display text-[clamp(2.25rem,6vw,5rem)] font-light leading-[1.02] tracking-[-0.035em];
+  }
+
+  /* Hero display type is sized by the *smaller* of the two viewport axes. A
+     width-only clamp overflows a short laptop screen, which is exactly how the
+     landing ended up with its call-to-action cut off below the fold. */
+  .display-hero {
+    @apply font-display font-light leading-[1.01] tracking-[-0.038em];
+    font-size: clamp(2rem, min(5.6vw, 8.4vh), 4.6rem);
+  }
+
+  .display-lg {
+    @apply font-display text-[clamp(1.85rem,4vw,3.1rem)] font-light leading-[1.08] tracking-[-0.028em];
+  }
+
+  .display-md {
+    @apply font-display text-[clamp(1.3rem,2.2vw,1.9rem)] font-light leading-[1.18] tracking-[-0.02em];
+  }
+
+  .display-sm {
+    @apply font-display text-[clamp(1.05rem,1.6vw,1.3rem)] font-normal leading-[1.25] tracking-[-0.012em];
+  }
+
+  .prose-sci {
+    @apply text-[13.5px] font-normal leading-[1.8] text-bone-dim;
+  }
+
+  .prose-sci strong {
+    @apply font-medium text-bone;
+  }
+
+  /* Fine grid used behind panels and on section dividers. */
+  .grid-fine {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 42%,
+      rgba(4, 5, 7, 0.62) 100%
+    );
+  }
+
+  /* Evidence tier chips — the KNOWN / SIMPLIFIED / CONCEPTUAL distinction is
+     load-bearing for this project's credibility, so it gets real styling. */
+  .tier {
+    @apply inline-flex shrink-0 items-center border px-1.5 py-0.5 font-mono text-[9px]
+           font-normal uppercase tracking-wider2;
+  }
+  .tier-known {
+    @apply border-signal-green/35 text-signal-green;
+  }
+  .tier-simplified {
+    @apply border-signal-amber/35 text-signal-amber;
+  }
+  .tier-conceptual {
+    @apply border-signal-violet/35 text-signal-violet;
+  }
+
+  /* Range inputs are everywhere in the lab; the default chrome is unusable
+     against this palette. */
+  .slider {
+    @apply h-1 w-full cursor-pointer appearance-none rounded-full bg-white/10;
+  }
+  .slider::-webkit-slider-thumb {
+    @apply h-3 w-3 appearance-none rounded-full border border-white/40 bg-bone
+           transition-transform;
+    box-shadow: 0 0 0 4px rgba(4, 5, 7, 0.9);
+  }
+  .slider::-webkit-slider-thumb:hover {
+    transform: scale(1.18);
+  }
+  .slider::-moz-range-thumb {
+    @apply h-3 w-3 rounded-full border border-white/40 bg-bone;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Film grain. Pure CSS so it costs nothing and survives WebGL being off. */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Respect the OS setting even before React has hydrated and read it. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.08ms !important;
+  }
+}

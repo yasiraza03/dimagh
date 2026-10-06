@@ -1,0 +1,833 @@
+{
+  "id": "apple-vision",
+  "code": "SEE",
+  "title": "Seeing a red apple",
+  "subtitle": "From photons to a decision about fruit",
+  "question": "What happens in your brain when you see a red apple?",
+  "duration": 13.4,
+  "estimate": "2 min",
+  "lens": "activity",
+  "accent": "cyan",
+  "teaser": "Follow one glance, from the light hitting your eye to the hand that reaches out.",
+  "intro": "It will feel like you just looked at an apple and knew what it was. What actually happened was a chain of steps: light turned into signals, small details pulled out, guesses made and sent back down, worth worked out, and a movement chosen. The whole thing takes a fraction of a second and you are aware of none of it. What follows is a simplified model of those steps.",
+  "stages": [
+    {
+      "id": "input",
+      "label": "Sensory input",
+      "time": 0
+    },
+    {
+      "id": "early",
+      "label": "Early vision",
+      "time": 1.5
+    },
+    {
+      "id": "features",
+      "label": "Feature processing",
+      "time": 2.4
+    },
+    {
+      "id": "object",
+      "label": "Object representation",
+      "time": 3.8
+    },
+    {
+      "id": "meaning",
+      "label": "Memory & value",
+      "time": 5.4
+    },
+    {
+      "id": "decision",
+      "label": "Decision",
+      "time": 7.8
+    },
+    {
+      "id": "action",
+      "label": "Action",
+      "time": 9.2
+    }
+  ],
+  "events": [
+    {
+      "id": "light",
+      "time": 0,
+      "title": "Light arrives",
+      "explanation": "Light bounces off the apple and hits the back of your eye. Nothing has been seen yet — so far this is just physics.",
+      "science": "The wavelengths reaching your eye depend as much on the illumination as on the apple. Your brain will have to factor the lighting back out, and it does this well enough that you rarely notice it happening.",
+      "activate": [
+        "retina"
+      ],
+      "intensity": 0.9,
+      "hold": 1.2,
+      "stage": "input",
+      "camera": {
+        "move": "focus",
+        "region": "retina",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "transduce",
+      "time": 0.45,
+      "title": "Transduction",
+      "explanation": "Cells in your eye turn light into electrical signals. Others nearby immediately start pulling out edges and colour. The editing begins inside your eye.",
+      "science": "Roughly a hundred million photoreceptors feed about one million output fibres. The retina is already compressing, and what it discards never reaches cortex at all.",
+      "source": "retina",
+      "target": "optic_pathway",
+      "intensity": 0.95,
+      "stage": "input",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "sensoryNoise": -0.3
+      }
+    },
+    {
+      "id": "relay",
+      "time": 1.05,
+      "title": "Thalamic relay",
+      "explanation": "The signal reaches a gate in the middle of your brain. It is not a plain wire — how awake you are, and what your brain already expects, both change what gets through.",
+      "science": "Only a minority of the synapses on this relay come from the eye. The majority come back down from cortex, which is a structural clue that early vision is not purely bottom-up.",
+      "source": "optic_pathway",
+      "target": "lgn",
+      "activate": [
+        "thalamus"
+      ],
+      "intensity": 0.9,
+      "stage": "input",
+      "camera": {
+        "move": "focus",
+        "region": "lgn",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "to-v1",
+      "time": 1.7,
+      "title": "Arrival in visual cortex",
+      "explanation": "The signal arrives at the back of your head, where there is a map of everything in front of you.",
+      "science": "The map is heavily distorted: the centre of gaze occupies a disproportionate share of the cortical surface. Acuity is a property of cortical real estate, not just of the eye.",
+      "source": "lgn",
+      "target": "v1",
+      "intensity": 1.0,
+      "hold": 2.2,
+      "stage": "early",
+      "camera": {
+        "move": "focus",
+        "region": "v1",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "features",
+      "time": 2.5,
+      "title": "Feature extraction",
+      "explanation": "Groups of cells react to small details: the angle of an edge, how sharp it is, which way it is moving. There is no apple here yet. Just fragments.",
+      "science": "We render these as separable layers for clarity. In cortex they are interleaved within the same tissue, in overlapping columnar maps rather than stacked sheets.",
+      "activate": [
+        "v1"
+      ],
+      "intensity": 1.0,
+      "hold": 1.8,
+      "stage": "features",
+      "camera": {
+        "move": "orbit",
+        "region": "v1",
+        "duration": 2.4
+      },
+      "kind": "forward"
+    },
+    {
+      "id": "v1-v4",
+      "time": 3.0,
+      "title": "Contour and surface",
+      "explanation": "The fragments get joined up. Lines continue across gaps, surfaces get a colour, and that colour is corrected for the lighting in the room.",
+      "science": "This correction is why the apple looks red in warm indoor light and in cold daylight, even though the wavelengths reaching your eye differ substantially.",
+      "source": "v1",
+      "target": "visual_feature",
+      "intensity": 0.95,
+      "hold": 2.0,
+      "stage": "features",
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "v1-mt",
+      "time": 3.25,
+      "title": "A parallel branch",
+      "explanation": "At the same time, a separate branch is working out what is moving and where things are.",
+      "science": "The 'two streams' framing is a useful simplification. The streams are heavily interconnected and the division of labour is a tendency, not a separation.",
+      "source": "v1",
+      "target": "mt",
+      "intensity": 0.55,
+      "stage": "features",
+      "kind": "forward"
+    },
+    {
+      "id": "object",
+      "time": 4.0,
+      "title": "Features converge",
+      "explanation": "The fragments come together into one shape. This response stays much the same if the apple moves, turns, or gets further away — which is the whole trick of recognising things.",
+      "science": "This is a population code. No single neuron 'is' the apple; the representation lives in the pattern across many cells, which is why it degrades gracefully rather than failing outright.",
+      "source": "visual_feature",
+      "target": "object_cortex",
+      "intensity": 1.0,
+      "hold": 2.4,
+      "stage": "object",
+      "camera": {
+        "move": "focus",
+        "region": "object_cortex",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "category",
+      "time": 4.6,
+      "title": "Category structure",
+      "explanation": "The underside of your brain sorts it into a kind of thing: small, graspable, food.",
+      "source": "object_cortex",
+      "target": "fusiform",
+      "intensity": 0.9,
+      "hold": 2.0,
+      "stage": "object",
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "feedback-1",
+      "time": 5.0,
+      "title": "The guess travels back down",
+      "explanation": "The answer your brain is settling on travels back down and tips the earlier stages in its favour. Seeing is a negotiation between levels, not a one-way pipe.",
+      "science": "This is the core claim of predictive-processing accounts. The detail of how prediction and error are implemented in cortex remains debated; the existence of massive descending feedback is not.",
+      "source": "object_cortex",
+      "target": "visual_feature",
+      "intensity": 0.7,
+      "reverse": false,
+      "stage": "object",
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "feedback-2",
+      "time": 5.3,
+      "title": "All the way to the gate",
+      "explanation": "That influence reaches all the way back to the gate near the middle, changing what gets through next time.",
+      "source": "v1",
+      "target": "lgn",
+      "intensity": 0.5,
+      "stage": "object",
+      "kind": "modulatory"
+    },
+    {
+      "id": "memory",
+      "time": 5.8,
+      "title": "Memory joins in",
+      "explanation": "Recognising it wakes up what you know about apples. Sometimes a specific one you remember comes with it.",
+      "source": "fusiform",
+      "target": "hippocampus",
+      "activate": [
+        "entorhinal"
+      ],
+      "intensity": 0.85,
+      "hold": 2.2,
+      "stage": "meaning",
+      "camera": {
+        "move": "focus",
+        "region": "hippocampus",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "memory-back",
+      "time": 6.4,
+      "title": "Associations return",
+      "explanation": "What memory supplies feeds back into the seeing parts and sharpens them. It is why familiar things are easier to spot in bad light.",
+      "science": "This is one reason familiar objects are recognised faster and in worse viewing conditions than unfamiliar ones. Prior exposure is not stored separately from perceiving.",
+      "source": "hippocampus",
+      "target": "fusiform",
+      "intensity": 0.65,
+      "stage": "meaning",
+      "kind": "feedback"
+    },
+    {
+      "id": "relevance",
+      "time": 6.6,
+      "title": "Relevance check",
+      "explanation": "In parallel, something checks whether this matters. An apple is harmless and mildly tempting, so not much happens.",
+      "source": "object_cortex",
+      "target": "amygdala",
+      "intensity": 0.45,
+      "stage": "meaning",
+      "kind": "forward",
+      "mods": {
+        "novelty": 0.5
+      }
+    },
+    {
+      "id": "value",
+      "time": 7.0,
+      "title": "What is it worth, now?",
+      "explanation": "Now the question is whether it is worth anything, right now. The same apple is worth far more when you are hungry.",
+      "science": "Value signals here track subjective rather than objective worth, and they update within minutes as internal state changes. 'Reward' is computed, not read off the object.",
+      "source": "object_cortex",
+      "target": "ofc",
+      "intensity": 0.8,
+      "hold": 2.4,
+      "stage": "meaning",
+      "camera": {
+        "move": "focus",
+        "region": "ofc",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "value-2",
+      "time": 7.4,
+      "title": "Value in context",
+      "explanation": "Worth gets combined with the situation. Whose apple is it, are you about to eat dinner, are you a guest in someone else's kitchen.",
+      "source": "ofc",
+      "target": "vmpfc",
+      "activate": [
+        "dlpfc"
+      ],
+      "intensity": 0.8,
+      "hold": 2.0,
+      "stage": "meaning",
+      "kind": "forward"
+    },
+    {
+      "id": "select",
+      "time": 8.1,
+      "title": "An action is selected",
+      "explanation": "Worth tips the balance toward one action and away from the others. Choosing is as much about holding things back as picking one.",
+      "source": "vmpfc",
+      "target": "basal_ganglia",
+      "intensity": 0.9,
+      "hold": 1.8,
+      "stage": "decision",
+      "camera": {
+        "move": "focus",
+        "region": "basal_ganglia",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "forward"
+    }
+  ],
+  "choices": {
+    "prompt": "An action is being selected. Which one?",
+    "at": 8.9,
+    "options": [
+      {
+        "id": "reach",
+        "label": "Pick it up",
+        "description": "A reach-and-grasp toward the apple.",
+        "outcome": "A visually guided reach: parietal cortex supplies the target's location in body-centred coordinates, premotor cortex specifies the movement, and the cerebellum predicts the consequences before your hand has moved.",
+        "events": [
+          {
+            "id": "plan",
+            "time": 9.3,
+            "title": "Movement is specified",
+            "explanation": "'Pick it up' becomes an actual plan: where your hand is, where the apple is, how your fingers should open on the way.",
+            "source": "basal_ganglia",
+            "target": "premotor",
+            "activate": [
+              "parietal"
+            ],
+            "intensity": 0.95,
+            "hold": 1.6,
+            "stage": "action",
+            "camera": {
+              "move": "focus",
+              "region": "premotor",
+              "duration": 1.4
+            },
+            "causal": true,
+            "kind": "forward"
+          },
+          {
+            "id": "forward-model",
+            "time": 9.8,
+            "title": "A prediction is issued",
+            "explanation": "A copy of the command goes to the back of your brain, which predicts what the movement will feel like — before it happens.",
+            "science": "Feedback alone is too slow for smooth movement. Prediction is what prevents your arm oscillating around the target.",
+            "source": "premotor",
+            "target": "cerebellum",
+            "intensity": 0.75,
+            "stage": "action",
+            "kind": "modulatory"
+          },
+          {
+            "id": "execute",
+            "time": 10.3,
+            "title": "Command issued",
+            "explanation": "The command is sent. This is the narrow doorway where a decision turns into a real event in the world.",
+            "source": "premotor",
+            "target": "motor_cortex",
+            "intensity": 1.0,
+            "hold": 1.4,
+            "stage": "action",
+            "camera": {
+              "move": "focus",
+              "region": "motor_cortex",
+              "duration": 1.3
+            },
+            "causal": true,
+            "kind": "forward"
+          },
+          {
+            "id": "move",
+            "time": 10.9,
+            "title": "The hand moves",
+            "explanation": "Your spinal cord and muscles turn the command into actual force.",
+            "source": "motor_cortex",
+            "target": "muscle",
+            "intensity": 1.0,
+            "stage": "action",
+            "causal": true,
+            "kind": "forward"
+          },
+          {
+            "id": "feel",
+            "time": 11.5,
+            "title": "Feedback returns",
+            "explanation": "Touch and position signals come straight back, and get compared with the prediction.",
+            "source": "muscle",
+            "target": "somatosensory",
+            "intensity": 0.85,
+            "stage": "action",
+            "kind": "feedback"
+          },
+          {
+            "id": "compare",
+            "time": 12.0,
+            "title": "Prediction versus outcome",
+            "explanation": "The two are compared. Any difference becomes a correction.",
+            "source": "somatosensory",
+            "target": "cerebellum",
+            "intensity": 0.8,
+            "stage": "action",
+            "kind": "feedback"
+          },
+          {
+            "id": "correct",
+            "time": 12.5,
+            "title": "Correction",
+            "explanation": "The movement is adjusted while it is still happening. You experience one smooth reach; it was assembled out of constant small fixes.",
+            "source": "cerebellum",
+            "target": "motor_cortex",
+            "intensity": 0.75,
+            "hold": 0.8,
+            "stage": "action",
+            "camera": {
+              "move": "overview",
+              "duration": 2.4
+            },
+            "causal": true,
+            "kind": "loop"
+          }
+        ]
+      },
+      {
+        "id": "eat",
+        "label": "Eat it",
+        "description": "Consume — a higher-value, more committed action.",
+        "outcome": "A committed consummatory action. Value signals are stronger, the motor sequence is longer and more automatic, and the internal-state systems that computed 'worth it' stay engaged through execution.",
+        "events": [
+          {
+            "id": "commit",
+            "time": 9.3,
+            "title": "Commitment",
+            "explanation": "Eating something is a bigger commitment than picking it up, and the worth-judging systems stay switched on throughout.",
+            "source": "vmpfc",
+            "target": "basal_ganglia",
+            "activate": [
+              "ofc",
+              "hypothalamus"
+            ],
+            "intensity": 1.0,
+            "hold": 2.4,
+            "stage": "action",
+            "camera": {
+              "move": "focus",
+              "region": "vmpfc",
+              "duration": 1.4
+            },
+            "causal": true,
+            "kind": "forward"
+          },
+          {
+            "id": "plan-e",
+            "time": 9.9,
+            "title": "A longer sequence",
+            "explanation": "Reach, grasp, lift, bite — chained together. Stringing actions into a sequence is part of what these deep loops do.",
+            "source": "basal_ganglia",
+            "target": "premotor",
+            "intensity": 0.95,
+            "hold": 2.0,
+            "stage": "action",
+            "causal": true,
+            "kind": "forward"
+          },
+          {
+            "id": "execute-e",
+            "time": 10.6,
+            "title": "Execution",
+            "explanation": "The sequence runs. Most of it needs no deliberate attention at all.",
+            "source": "premotor",
+            "target": "motor_cortex",
+            "intensity": 1.0,
+            "hold": 1.6,
+            "stage": "action",
+            "camera": {
+              "move": "focus",
+              "region": "motor_cortex",
+              "duration": 1.3
+            },
+            "causal": true,
+            "kind": "forward"
+          },
+          {
+            "id": "move-e",
+            "time": 11.2,
+            "title": "The action runs",
+            "explanation": "The command reaches your muscles.",
+            "source": "motor_cortex",
+            "target": "muscle",
+            "intensity": 1.0,
+            "stage": "action",
+            "causal": true,
+            "kind": "forward"
+          },
+          {
+            "id": "intero",
+            "time": 11.9,
+            "title": "The body reports back",
+            "explanation": "Taste, texture and signals from your stomach arrive and update what this is worth next time.",
+            "science": "Value representations are not fixed — they are revised by outcomes. This is how the same object comes to be worth less after the fourth one.",
+            "source": "muscle",
+            "target": "somatosensory",
+            "activate": [
+              "insula",
+              "ofc"
+            ],
+            "intensity": 0.8,
+            "hold": 1.4,
+            "stage": "action",
+            "camera": {
+              "move": "overview",
+              "duration": 2.4
+            },
+            "causal": true,
+            "kind": "feedback"
+          }
+        ]
+      },
+      {
+        "id": "ignore",
+        "label": "Ignore it",
+        "description": "Withhold the action — which is not the same as doing nothing.",
+        "outcome": "Not acting is an action. The movement was prepared and then suppressed, which engages control circuitry rather than leaving it idle. Withholding costs more than it looks like it should.",
+        "events": [
+          {
+            "id": "prepare-i",
+            "time": 9.3,
+            "title": "The action is prepared anyway",
+            "explanation": "The movement had already started being prepared before you decided not to do it. Now something has to stop it.",
+            "science": "Prepared-but-withheld movements leave measurable traces in motor preparation signals. 'Doing nothing' is rarely a null state in the brain.",
+            "source": "basal_ganglia",
+            "target": "premotor",
+            "intensity": 0.6,
+            "hold": 1.0,
+            "stage": "action",
+            "camera": {
+              "move": "focus",
+              "region": "premotor",
+              "duration": 1.4
+            },
+            "causal": true,
+            "kind": "forward"
+          },
+          {
+            "id": "conflict-i",
+            "time": 9.9,
+            "title": "Conflict detected",
+            "explanation": "A prepared action and a decision not to do it are in conflict. Something notices.",
+            "source": "premotor",
+            "target": "acc",
+            "activate": [
+              "acc"
+            ],
+            "intensity": 0.85,
+            "hold": 2.0,
+            "stage": "action",
+            "camera": {
+              "move": "focus",
+              "region": "acc",
+              "duration": 1.4
+            },
+            "causal": true,
+            "kind": "forward"
+          },
+          {
+            "id": "suppress-i",
+            "time": 10.6,
+            "title": "Suppression",
+            "explanation": "Control signals tip the balance against letting it go. The action is cancelled before it reaches your muscles.",
+            "source": "acc",
+            "target": "dlpfc",
+            "activate": [
+              "dlpfc",
+              "basal_ganglia"
+            ],
+            "intensity": 0.9,
+            "hold": 1.8,
+            "stage": "action",
+            "causal": true,
+            "kind": "modulatory"
+          },
+          {
+            "id": "residual-i",
+            "time": 11.4,
+            "title": "Residual activation",
+            "explanation": "The apple does not switch off. It is still there, still recognised, still worth something. You just did not act on it.",
+            "activate": [
+              "object_cortex",
+              "ofc",
+              "fusiform"
+            ],
+            "intensity": 0.5,
+            "hold": 1.6,
+            "stage": "action",
+            "camera": {
+              "move": "overview",
+              "duration": 2.4
+            },
+            "causal": true,
+            "kind": "loop"
+          }
+        ]
+      }
+    ]
+  },
+  "causalChain": [
+    {
+      "id": "c1",
+      "label": "Light on the retina",
+      "detail": "Pure physics. Light bounces off a surface and lands in your eye.",
+      "regions": [
+        "retina"
+      ],
+      "event": "light"
+    },
+    {
+      "id": "c2",
+      "label": "Transduction and early editing",
+      "detail": "Light becomes signal — already squeezed and sharpened inside your eye.",
+      "regions": [
+        "retina",
+        "optic_pathway"
+      ],
+      "event": "transduce"
+    },
+    {
+      "id": "c3",
+      "label": "Gated relay",
+      "detail": "A gate in the middle passes it on, heavily influenced by what the brain already expects.",
+      "regions": [
+        "lgn",
+        "thalamus"
+      ],
+      "event": "relay"
+    },
+    {
+      "id": "c4",
+      "label": "Local features",
+      "detail": "The back of your head holds edges and angles, not a picture.",
+      "regions": [
+        "v1"
+      ],
+      "event": "to-v1"
+    },
+    {
+      "id": "c5",
+      "label": "Contours and surfaces",
+      "detail": "Those get joined into shapes, and colour is corrected for the lighting.",
+      "regions": [
+        "visual_feature"
+      ],
+      "event": "v1-v4"
+    },
+    {
+      "id": "c6",
+      "label": "An object",
+      "detail": "A whole object appears — recognisable from any angle or distance.",
+      "regions": [
+        "object_cortex",
+        "fusiform"
+      ],
+      "event": "object"
+    },
+    {
+      "id": "c7",
+      "label": "Meaning and memory",
+      "detail": "What you know about apples wakes up and feeds back into what you see.",
+      "regions": [
+        "hippocampus",
+        "entorhinal",
+        "fusiform"
+      ],
+      "event": "memory"
+    },
+    {
+      "id": "c8",
+      "label": "Value in your current state",
+      "detail": "What it is worth to you, right now, given how hungry you are.",
+      "regions": [
+        "ofc",
+        "vmpfc"
+      ],
+      "event": "value"
+    },
+    {
+      "id": "c9",
+      "label": "Action selection",
+      "detail": "One option is released and the rest are held back.",
+      "regions": [
+        "basal_ganglia",
+        "dlpfc"
+      ],
+      "event": "select"
+    },
+    {
+      "id": "c10",
+      "label": "Movement",
+      "detail": "The plan becomes a command, and the command becomes force.",
+      "regions": [
+        "premotor",
+        "motor_cortex",
+        "muscle"
+      ]
+    },
+    {
+      "id": "c11",
+      "label": "Feedback and correction",
+      "detail": "The result comes back and gets checked against the prediction.",
+      "regions": [
+        "somatosensory",
+        "cerebellum"
+      ]
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Visual information reaching cortex is routed predominantly through the thalamus, and primary visual cortex contains an orderly, heavily magnified map of the visual field."
+    },
+    {
+      "tier": "known",
+      "text": "Cells in early visual cortex respond selectively to local features such as edge orientation and spatial frequency."
+    },
+    {
+      "tier": "known",
+      "text": "Object-selective regions respond more strongly to coherent objects than to scrambled versions containing the same low-level features."
+    },
+    {
+      "tier": "known",
+      "text": "Descending connections from higher to lower visual areas are numerous — in many pathways outnumbering the ascending ones."
+    },
+    {
+      "tier": "simplified",
+      "text": "We show processing as a clean sequence of stages. In reality the stages overlap heavily in time; later areas begin responding before earlier ones have finished."
+    },
+    {
+      "tier": "simplified",
+      "text": "The whole cascade from retina to recognition takes on the order of a couple of hundred milliseconds. We stretch it across thirteen seconds so it can be watched."
+    },
+    {
+      "tier": "simplified",
+      "text": "'Feature layers' are drawn as separable sheets. Biologically these properties are interleaved in the same cortical tissue."
+    },
+    {
+      "tier": "conceptual",
+      "text": "Treating feedback as 'the guess travelling back down' is a predictive-processing framing. It is well motivated and influential, but the precise computational role of cortical feedback is still an open research question."
+    },
+    {
+      "tier": "conceptual",
+      "text": "The region activity you see is generated by this scenario file. It is an illustration of a pathway, not a recording, a simulation of neural dynamics, or a measurement of anyone's brain."
+    }
+  ],
+  "references": [
+    {
+      "label": "Hierarchical visual processing",
+      "note": "The idea that visual cortex builds progressively more complex representations originates in single-cell recordings of orientation-selective cells in early visual cortex."
+    },
+    {
+      "label": "Two visual streams",
+      "note": "A widely used framing distinguishing a ventral 'what' pathway from a dorsal pathway concerned with space and action. Treated here as a tendency rather than a strict division."
+    },
+    {
+      "label": "Predictive processing",
+      "note": "A family of theories in which perception combines incoming sensory evidence with top-down expectation. Influential, actively debated, and not settled."
+    },
+    {
+      "label": "Value-based decision making",
+      "note": "Work associating orbitofrontal and ventromedial prefrontal cortex with state-dependent subjective value."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "confidence",
+      "label": "Recognition confidence",
+      "base": 0.86,
+      "mods": {
+        "sensoryNoise": -0.5,
+        "attention": 0.18,
+        "difficulty": -0.2
+      },
+      "note": "How firmly the model settles on one answer instead of staying unsure.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "latency",
+      "label": "Settling time",
+      "base": 0.3,
+      "mods": {
+        "sensoryNoise": 0.42,
+        "difficulty": 0.3,
+        "attention": -0.2
+      },
+      "note": "How long it takes to settle. Higher means slower.",
+      "polarity": "good-low"
+    },
+    {
+      "id": "feedback",
+      "label": "Top-down contribution",
+      "base": 0.42,
+      "mods": {
+        "sensoryNoise": 0.45,
+        "novelty": -0.25
+      },
+      "note": "How much of the final answer came from expectation rather than from your eyes.",
+      "polarity": "neutral"
+    }
+  ],
+  "outcome": {
+    "headline": "Seeing",
+    "body": "Light became a signal, the signal became fragments, the fragments became an object, the object got a meaning and a value, and the value became a movement. Each arrow in that chain is a real boundary where the information turned into a different kind of thing.",
+    "insight": "You did not experience any of it. By the time 'apple' showed up in your head, the hard part was already over — and the answer had already started travelling back down to shape what you would see next."
+  },
+  "companion": "apple"
+}

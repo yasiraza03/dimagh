@@ -1,0 +1,416 @@
+{
+  "id": "decision",
+  "code": "DECIDE",
+  "title": "Making a choice",
+  "subtitle": "Evidence accumulating to a threshold",
+  "question": "What happens when you decide between two options?",
+  "duration": 10.2,
+  "estimate": "2 min",
+  "lens": "activity",
+  "accent": "amber",
+  "teaser": "Watch a choice get made as evidence piles up and crosses a line.",
+  "intro": "A decision does not happen in an instant. Evidence for each option builds up over time, and the choice happens when one of them crosses a line. Where that line sits decides whether you are fast and careless or slow and careful — and it moves.",
+  "stages": [
+    {
+      "id": "options",
+      "label": "Options represented",
+      "time": 0
+    },
+    {
+      "id": "value",
+      "label": "Valuation",
+      "time": 2.0
+    },
+    {
+      "id": "accumulate",
+      "label": "Accumulation",
+      "time": 4.0
+    },
+    {
+      "id": "threshold",
+      "label": "Threshold crossed",
+      "time": 6.4
+    },
+    {
+      "id": "commit",
+      "label": "Commitment & evaluation",
+      "time": 8.0
+    }
+  ],
+  "events": [
+    {
+      "id": "see-options",
+      "time": 0,
+      "title": "Both options are represented",
+      "explanation": "Both options get recognised. At this point neither is preferred — they just both exist.",
+      "source": "object_cortex",
+      "target": "fusiform",
+      "activate": [
+        "v1",
+        "visual_feature",
+        "object_cortex"
+      ],
+      "intensity": 0.85,
+      "hold": 2.2,
+      "stage": "options",
+      "camera": {
+        "move": "focus",
+        "region": "object_cortex",
+        "duration": 1.7
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "value",
+      "time": 2.1,
+      "title": "Each is assigned a value",
+      "explanation": "Each one gets a worth, based on your current state. They end up on the same scale, which is the only reason they can be compared at all.",
+      "science": "Value signals here are state-dependent: the same option is valued differently when you are hungry, tired, or have just had one.",
+      "source": "fusiform",
+      "target": "ofc",
+      "activate": [
+        "ofc"
+      ],
+      "intensity": 0.9,
+      "hold": 2.6,
+      "stage": "value",
+      "camera": {
+        "move": "focus",
+        "region": "ofc",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "context",
+      "time": 2.9,
+      "title": "Context modifies the values",
+      "explanation": "The situation adjusts those numbers. Who you are with, what you decided this morning, what you are trying to do generally.",
+      "source": "ofc",
+      "target": "vmpfc",
+      "activate": [
+        "vmpfc",
+        "hippocampus"
+      ],
+      "intensity": 0.85,
+      "hold": 2.4,
+      "stage": "value",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "memoryLoad": -0.2
+      }
+    },
+    {
+      "id": "accumulate",
+      "time": 4.1,
+      "title": "Evidence accumulates",
+      "explanation": "The difference between the options gets added up over time. Activity ramps in a way that tracks that adding-up.",
+      "science": "Ramping activity whose slope predicts both the choice and the reaction time is one of the most reproducible findings in decision neuroscience.",
+      "source": "vmpfc",
+      "target": "parietal",
+      "activate": [
+        "parietal",
+        "dlpfc"
+      ],
+      "intensity": 0.9,
+      "hold": 2.8,
+      "stage": "accumulate",
+      "camera": {
+        "move": "focus",
+        "region": "parietal",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "difficulty": -0.3,
+        "sensoryNoise": -0.25
+      }
+    },
+    {
+      "id": "noise",
+      "time": 4.9,
+      "title": "The accumulation is noisy",
+      "explanation": "The adding-up is messy. When the options are close, the mess decides — which is why you can choose differently on identical occasions.",
+      "source": "parietal",
+      "target": "dlpfc",
+      "intensity": 0.7,
+      "hold": 2.2,
+      "stage": "accumulate",
+      "kind": "loop",
+      "mods": {
+        "sensoryNoise": 0.4,
+        "difficulty": 0.3
+      }
+    },
+    {
+      "id": "urgency",
+      "time": 5.6,
+      "title": "Urgency rises",
+      "explanation": "As time passes, the line gets lower. Waiting costs something, so the system gradually becomes easier to satisfy.",
+      "science": "Collapsing-bound models capture the fact that people eventually commit even when evidence remains ambiguous. Pure fixed-threshold models do not.",
+      "source": "acc",
+      "target": "parietal",
+      "activate": [
+        "acc"
+      ],
+      "intensity": 0.75,
+      "hold": 2.0,
+      "stage": "accumulate",
+      "kind": "modulatory",
+      "mods": {
+        "difficulty": 0.25
+      }
+    },
+    {
+      "id": "threshold",
+      "time": 6.5,
+      "title": "The threshold is crossed",
+      "explanation": "One option crosses the line. The decision happens here — not when you became aware of it.",
+      "source": "parietal",
+      "target": "basal_ganglia",
+      "intensity": 1.0,
+      "hold": 2.0,
+      "stage": "threshold",
+      "camera": {
+        "move": "focus",
+        "region": "basal_ganglia",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "burst"
+    },
+    {
+      "id": "release",
+      "time": 7.2,
+      "title": "The action is released",
+      "explanation": "The chosen action gets released and the other gets held back. Holding back is as much of the work as choosing.",
+      "source": "basal_ganglia",
+      "target": "premotor",
+      "intensity": 0.95,
+      "hold": 1.8,
+      "stage": "threshold",
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "aware",
+      "time": 8.1,
+      "title": "You become aware of having decided",
+      "explanation": "You become aware of having decided. The order is measurable and reliable, and it is uncomfortable.",
+      "science": "That preparatory activity precedes reported awareness of deciding is well established. What this implies about agency is contested, and we take no position on it.",
+      "activate": [
+        "dlpfc",
+        "premotor",
+        "acc"
+      ],
+      "intensity": 0.8,
+      "hold": 1.8,
+      "stage": "commit",
+      "camera": {
+        "move": "focus",
+        "region": "premotor",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "loop"
+    },
+    {
+      "id": "outcome",
+      "time": 9.0,
+      "title": "The outcome updates the values",
+      "explanation": "Whatever happens next changes what these options are worth. The next identical choice will not be worked out identically.",
+      "source": "ofc",
+      "target": "basal_ganglia",
+      "activate": [
+        "ofc",
+        "vmpfc",
+        "basal_ganglia"
+      ],
+      "intensity": 0.8,
+      "hold": 1.0,
+      "stage": "commit",
+      "camera": {
+        "move": "overview",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "loop"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "e1",
+      "label": "Options represented",
+      "detail": "Both options exist as possibilities, neither preferred.",
+      "regions": [
+        "object_cortex",
+        "fusiform"
+      ],
+      "event": "see-options"
+    },
+    {
+      "id": "e2",
+      "label": "Values computed",
+      "detail": "Each gets a worth, on a scale that allows comparison.",
+      "regions": [
+        "ofc"
+      ],
+      "event": "value"
+    },
+    {
+      "id": "e3",
+      "label": "Context applied",
+      "detail": "The situation changes how that worth is worked out.",
+      "regions": [
+        "vmpfc",
+        "hippocampus"
+      ],
+      "event": "context"
+    },
+    {
+      "id": "e4",
+      "label": "Evidence accumulates",
+      "detail": "The difference gets added up over time, messily.",
+      "regions": [
+        "parietal",
+        "dlpfc"
+      ],
+      "event": "accumulate"
+    },
+    {
+      "id": "e5",
+      "label": "Urgency lowers the bar",
+      "detail": "Waiting costs something, so the bar gradually drops.",
+      "regions": [
+        "acc"
+      ],
+      "event": "urgency"
+    },
+    {
+      "id": "e6",
+      "label": "Threshold crossed",
+      "detail": "The decision happens at the crossing.",
+      "regions": [
+        "parietal",
+        "basal_ganglia"
+      ],
+      "event": "threshold"
+    },
+    {
+      "id": "e7",
+      "label": "Action released",
+      "detail": "One action is released, the other held back.",
+      "regions": [
+        "basal_ganglia",
+        "premotor"
+      ],
+      "event": "release"
+    },
+    {
+      "id": "e8",
+      "label": "Awareness follows",
+      "detail": "Awareness of having decided comes afterwards.",
+      "regions": [
+        "dlpfc",
+        "premotor"
+      ],
+      "event": "aware"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Neural activity in parietal and frontal regions ramps during decisions in a way that predicts both the choice and the time taken."
+    },
+    {
+      "tier": "known",
+      "text": "Orbitofrontal value signals are state-dependent and are expressed on a comparable scale across different kinds of options."
+    },
+    {
+      "tier": "known",
+      "text": "Preparatory motor activity precedes a person's reported awareness of having decided to act."
+    },
+    {
+      "tier": "known",
+      "text": "Choices between closely matched options are variable across repetitions of the same situation."
+    },
+    {
+      "tier": "simplified",
+      "text": "We draw a single accumulator with one threshold. Real decisions appear to involve multiple competing accumulators with mutual inhibition."
+    },
+    {
+      "tier": "simplified",
+      "text": "The accumulation trace in the panel is produced by a small random-walk model written for this page, not by a model of neural populations."
+    },
+    {
+      "tier": "conceptual",
+      "text": "That preparation precedes reported awareness is a measurement. What it means for free will is a philosophical dispute, and this project does not resolve it or take a side."
+    }
+  ],
+  "references": [
+    {
+      "label": "Drift-diffusion models",
+      "note": "A framework describing decisions as noisy accumulation of evidence to a threshold, fitting both choices and reaction-time distributions."
+    },
+    {
+      "label": "Common currency value coding",
+      "note": "Evidence that orbitofrontal cortex represents value on a scale that permits comparison across option types."
+    },
+    {
+      "label": "Collapsing bounds",
+      "note": "Models in which the decision threshold decreases over time, accounting for commitment under persistent ambiguity."
+    },
+    {
+      "label": "Readiness potentials",
+      "note": "Measurements showing motor preparation preceding reported awareness of a decision to move."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "speed",
+      "label": "Decision speed",
+      "base": 0.55,
+      "mods": {
+        "difficulty": -0.4,
+        "attention": 0.25,
+        "sensoryNoise": -0.2
+      },
+      "note": "How quickly the model reaches a decision.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "consistency",
+      "label": "Choice consistency",
+      "base": 0.65,
+      "mods": {
+        "sensoryNoise": -0.4,
+        "difficulty": -0.3,
+        "attention": 0.2
+      },
+      "note": "How reliably it makes the same choice when the situation repeats.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "threshold",
+      "label": "Effective threshold",
+      "base": 0.5,
+      "mods": {
+        "attention": 0.3,
+        "difficulty": 0.2,
+        "distraction": -0.25
+      },
+      "note": "How much evidence it wants before committing. Higher means slower and more careful.",
+      "polarity": "neutral"
+    }
+  ],
+  "outcome": {
+    "headline": "Deciding",
+    "body": "Two options were given a worth on the same scale, the difference between them was added up messily over time, impatience gradually lowered the bar, and the choice happened when one crossed it.",
+    "insight": "The decision was made before you knew about it, and if the options had been closer, noise would have picked for you. Your sense of having weighed it up is a report about something you did not watch."
+  },
+  "companion": "decision"
+}

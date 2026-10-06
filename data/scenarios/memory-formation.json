@@ -1,0 +1,439 @@
+{
+  "id": "memory-formation",
+  "code": "LEARN",
+  "title": "Forming a memory",
+  "subtitle": "An experience becomes something retrievable",
+  "question": "What happens when you remember something new?",
+  "duration": 12.0,
+  "estimate": "3 min",
+  "lens": "memory",
+  "accent": "violet",
+  "teaser": "Look around a room you have never seen, then watch it turn into a memory.",
+  "intro": "Storing a memory is not recording. An experience arrives spread across a dozen different systems, and something has to tie those pieces into one thing you can pull back up later. That tying-together is picky, it favours whatever mattered at the time, and it keeps getting revised long afterwards.",
+  "stages": [
+    {
+      "id": "experience",
+      "label": "Experience",
+      "time": 0
+    },
+    {
+      "id": "bind",
+      "label": "Binding",
+      "time": 3.0
+    },
+    {
+      "id": "select",
+      "label": "Selection",
+      "time": 5.4
+    },
+    {
+      "id": "consolidate",
+      "label": "Consolidation",
+      "time": 7.4
+    },
+    {
+      "id": "distribute",
+      "label": "Distributed representation",
+      "time": 9.8
+    }
+  ],
+  "events": [
+    {
+      "id": "sensory",
+      "time": 0,
+      "title": "The experience arrives in pieces",
+      "explanation": "Objects, layout, sounds, how the room felt — all handled by different systems, none of which knows about the others.",
+      "activate": [
+        "v1",
+        "visual_feature",
+        "object_cortex",
+        "a1",
+        "somatosensory"
+      ],
+      "intensity": 0.85,
+      "hold": 3.0,
+      "stage": "experience",
+      "camera": {
+        "move": "overview",
+        "duration": 2.2
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "recognise",
+      "time": 1.2,
+      "title": "Content is identified",
+      "explanation": "Things get recognised and sorted. What goes into memory is this interpreted version, not what actually hit your eyes.",
+      "source": "object_cortex",
+      "target": "fusiform",
+      "intensity": 0.9,
+      "hold": 2.6,
+      "stage": "experience",
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "space",
+      "time": 1.9,
+      "title": "Where things are",
+      "explanation": "Where things are gets handled separately from what they are. 'Where' and 'what' arrive at memory by different routes.",
+      "source": "parietal",
+      "target": "entorhinal",
+      "activate": [
+        "parietal"
+      ],
+      "intensity": 0.8,
+      "hold": 2.6,
+      "stage": "experience",
+      "kind": "forward"
+    },
+    {
+      "id": "gateway",
+      "time": 3.1,
+      "title": "Through the gateway",
+      "explanation": "Everything funnels into one doorway — the way in and out of the memory system.",
+      "source": "fusiform",
+      "target": "entorhinal",
+      "intensity": 0.95,
+      "hold": 2.4,
+      "stage": "bind",
+      "camera": {
+        "move": "focus",
+        "region": "entorhinal",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "bind",
+      "time": 3.8,
+      "title": "Binding",
+      "explanation": "The pieces get tied into a single thing you can retrieve as a whole. That is what makes it an episode rather than a list of facts.",
+      "science": "Hippocampal damage impairs forming new memories for events while leaving skill learning and immediate conversation largely intact — the clearest evidence that memory is not one system.",
+      "source": "entorhinal",
+      "target": "hippocampus",
+      "intensity": 1.0,
+      "hold": 3.0,
+      "stage": "bind",
+      "camera": {
+        "move": "focus",
+        "region": "hippocampus",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "memoryLoad": -0.3,
+        "attention": 0.25
+      }
+    },
+    {
+      "id": "context",
+      "time": 4.5,
+      "title": "Context is bound in too",
+      "explanation": "When and where become part of the memory too. It is why a smell can drop you back into a specific room.",
+      "source": "hippocampus",
+      "target": "precuneus",
+      "intensity": 0.8,
+      "hold": 2.6,
+      "stage": "bind",
+      "kind": "forward"
+    },
+    {
+      "id": "salience",
+      "time": 5.5,
+      "title": "Not everything is kept equally",
+      "explanation": "Not everything is kept equally. How much something mattered decides how strongly it sticks — and that gets decided before you have a say.",
+      "science": "Arousal at the time of an event is associated with better retention of its central details. What felt important is what survives.",
+      "source": "amygdala",
+      "target": "hippocampus",
+      "activate": [
+        "amygdala"
+      ],
+      "intensity": 0.85,
+      "hold": 2.4,
+      "stage": "select",
+      "camera": {
+        "move": "focus",
+        "region": "amygdala",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "modulatory",
+      "mods": {
+        "novelty": 0.35,
+        "attention": 0.2
+      }
+    },
+    {
+      "id": "attention-gate",
+      "time": 6.2,
+      "title": "Attention gates encoding",
+      "explanation": "Whatever you did not pay attention to often did not get stored well enough to find again. Divided attention costs you the memory.",
+      "source": "dlpfc",
+      "target": "hippocampus",
+      "activate": [
+        "dlpfc"
+      ],
+      "intensity": 0.75,
+      "hold": 2.2,
+      "stage": "select",
+      "causal": true,
+      "kind": "modulatory",
+      "mods": {
+        "attention": 0.4,
+        "distraction": -0.4,
+        "memoryLoad": -0.3
+      }
+    },
+    {
+      "id": "replay",
+      "time": 7.5,
+      "title": "Reactivation",
+      "explanation": "Over the following hours and nights, the same patterns get replayed in bursts, with nothing happening to trigger them.",
+      "science": "Coordinated hippocampal–cortical reactivation during rest and sleep is well documented, and interfering with it impairs later retention.",
+      "source": "hippocampus",
+      "target": "precuneus",
+      "via": "hpc-pcun-sleep",
+      "intensity": 0.9,
+      "hold": 2.0,
+      "stage": "consolidate",
+      "camera": {
+        "move": "orbit",
+        "region": "hippocampus",
+        "duration": 2.6
+      },
+      "causal": true,
+      "kind": "burst"
+    },
+    {
+      "id": "replay-2",
+      "time": 8.2,
+      "title": "The cortex is recruited",
+      "explanation": "That replay reaches the parts that originally did the seeing and hearing, strengthening the links between them.",
+      "source": "hippocampus",
+      "target": "fusiform",
+      "via": "hpc-fus-sleep",
+      "intensity": 0.8,
+      "hold": 2.2,
+      "stage": "consolidate",
+      "causal": true,
+      "kind": "burst"
+    },
+    {
+      "id": "distribute",
+      "time": 9.9,
+      "title": "The representation changes character",
+      "explanation": "Over time, finding the memory depends less on the hippocampus and more on connections spread across the brain. Nothing was copied or moved — what changed is what retrieval leans on.",
+      "science": "This is systems consolidation. The strong version — that memories eventually become fully hippocampus-independent — is debated, especially for vivid, detailed episodic recall.",
+      "activate": [
+        "fusiform",
+        "precuneus",
+        "object_cortex",
+        "temporoparietal_lang"
+      ],
+      "intensity": 0.8,
+      "hold": 2.0,
+      "stage": "distribute",
+      "camera": {
+        "move": "wide",
+        "duration": 2.8
+      },
+      "causal": true,
+      "kind": "loop"
+    },
+    {
+      "id": "transform",
+      "time": 10.9,
+      "title": "And it keeps changing",
+      "explanation": "And it keeps changing. Detail drops away, the gist stays, and every time you retrieve it you can alter it.",
+      "science": "Retrieval is itself an encoding event. Remembering can strengthen, distort or update the memory being retrieved.",
+      "activate": [
+        "hippocampus",
+        "precuneus",
+        "dlpfc"
+      ],
+      "intensity": 0.6,
+      "hold": 1.2,
+      "stage": "distribute",
+      "camera": {
+        "move": "overview",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "loop"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "m1",
+      "label": "Experience arrives distributed",
+      "detail": "The experience arrives in pieces, handled by systems that do not know about each other.",
+      "regions": [
+        "v1",
+        "object_cortex",
+        "a1",
+        "somatosensory"
+      ],
+      "event": "sensory"
+    },
+    {
+      "id": "m2",
+      "label": "Content is interpreted",
+      "detail": "What gets stored is your interpretation, not the raw input.",
+      "regions": [
+        "fusiform",
+        "object_cortex"
+      ],
+      "event": "recognise"
+    },
+    {
+      "id": "m3",
+      "label": "Convergence at the gateway",
+      "detail": "Everything funnels through one doorway into the memory system.",
+      "regions": [
+        "entorhinal"
+      ],
+      "event": "gateway"
+    },
+    {
+      "id": "m4",
+      "label": "Binding",
+      "detail": "The pieces get tied into one retrievable thing.",
+      "regions": [
+        "hippocampus"
+      ],
+      "event": "bind"
+    },
+    {
+      "id": "m5",
+      "label": "Selection by relevance",
+      "detail": "What mattered and what you attended to decide what survives.",
+      "regions": [
+        "amygdala",
+        "dlpfc"
+      ],
+      "event": "salience"
+    },
+    {
+      "id": "m6",
+      "label": "Reactivation",
+      "detail": "Replay during rest and sleep makes it more stable.",
+      "regions": [
+        "hippocampus",
+        "precuneus"
+      ],
+      "event": "replay"
+    },
+    {
+      "id": "m7",
+      "label": "Reliance shifts",
+      "detail": "Finding it comes to depend on a different, more spread-out set of connections.",
+      "regions": [
+        "fusiform",
+        "precuneus",
+        "temporoparietal_lang"
+      ],
+      "event": "distribute"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Damage to the hippocampus and surrounding structures impairs the formation of new memories for events while sparing many other kinds of learning."
+    },
+    {
+      "tier": "known",
+      "text": "Attention at the time of an experience strongly predicts whether it can later be retrieved."
+    },
+    {
+      "tier": "known",
+      "text": "Coordinated reactivation of recent activity patterns occurs during rest and sleep, and disrupting it impairs retention."
+    },
+    {
+      "tier": "known",
+      "text": "Retrieving a memory can change it. Memory is reconstructive rather than reproductive."
+    },
+    {
+      "tier": "simplified",
+      "text": "We show encoding as a single binding event. It is continuous, overlapping, and distributed across the whole experience."
+    },
+    {
+      "tier": "simplified",
+      "text": "The 'Now / 1 day / 1 week / 1 year' control compresses processes that unfold over very different timescales into one visual axis."
+    },
+    {
+      "tier": "conceptual",
+      "text": "Nothing here is a memory moving from one place to another. The brightening cortical network represents a change in what retrieval depends on — not a file transfer. We are deliberately avoiding that metaphor."
+    },
+    {
+      "tier": "conceptual",
+      "text": "How completely a memory can become independent of the hippocampus is an open question, and the answer appears to differ for gist and for vivid detail."
+    }
+  ],
+  "references": [
+    {
+      "label": "Medial temporal lobe amnesia",
+      "note": "Case and lesion work establishing the role of hippocampal structures in forming new episodic memories."
+    },
+    {
+      "label": "Systems consolidation",
+      "note": "The proposal that memory representations gradually change their dependence on hippocampal versus cortical structures over time."
+    },
+    {
+      "label": "Replay during sleep",
+      "note": "Findings that patterns active during experience are reactivated in coordinated bursts during subsequent rest and sleep."
+    },
+    {
+      "label": "Reconsolidation",
+      "note": "Work showing that retrieved memories can enter a labile state and be modified."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "encoding",
+      "label": "Encoding strength",
+      "base": 0.65,
+      "mods": {
+        "attention": 0.4,
+        "distraction": -0.4,
+        "novelty": 0.25,
+        "memoryLoad": -0.3
+      },
+      "note": "How strongly the model ties this experience together.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "detail",
+      "label": "Detail retained",
+      "base": 0.5,
+      "mods": {
+        "attention": 0.35,
+        "memoryLoad": -0.35,
+        "sensoryNoise": -0.2
+      },
+      "note": "How much specific detail survives, as opposed to just the gist.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "durability",
+      "label": "Modelled durability",
+      "base": 0.55,
+      "mods": {
+        "novelty": 0.3,
+        "attention": 0.2,
+        "distraction": -0.25
+      },
+      "note": "How well it holds up over the days that follow.",
+      "polarity": "good-high"
+    }
+  ],
+  "outcome": {
+    "headline": "Encoding",
+    "body": "An experience that arrived in pieces across a dozen systems got tied into something you can pull back as a whole. Then it was selectively strengthened, replayed while you were not using it, and gradually came to depend on a different set of connections.",
+    "insight": "You did not choose what to remember. The choice was made during the experience, using what mattered and what you were attending to — and it is still being revised."
+  },
+  "companion": "memory"
+}

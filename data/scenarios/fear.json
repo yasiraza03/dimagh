@@ -1,0 +1,518 @@
+{
+  "id": "fear",
+  "code": "FEEL FEAR",
+  "title": "Encountering a threat",
+  "subtitle": "Fast, coarse, and committed before you know what it is",
+  "question": "What happens when something frightens you?",
+  "duration": 11.6,
+  "estimate": "3 min",
+  "lens": "emotion",
+  "accent": "threat",
+  "teaser": "A dark room, a shape you cannot make out, and a reaction that starts before you know what it is.",
+  "intro": "Being frightened is not a feeling that then causes a reaction. Your body commits first, on incomplete information, because being slow is more expensive than being wrong. The feeling arrives alongside — built partly out of the state your body has already put itself in.",
+  "stages": [
+    {
+      "id": "ambient",
+      "label": "Low light, high vigilance",
+      "time": 0
+    },
+    {
+      "id": "onset",
+      "label": "Something moves",
+      "time": 2.0
+    },
+    {
+      "id": "fast",
+      "label": "The fast route",
+      "time": 3.0
+    },
+    {
+      "id": "body",
+      "label": "The body commits",
+      "time": 4.4
+    },
+    {
+      "id": "slow",
+      "label": "The slow route catches up",
+      "time": 6.6
+    },
+    {
+      "id": "regulate",
+      "label": "Context and regulation",
+      "time": 8.8
+    }
+  ],
+  "events": [
+    {
+      "id": "vigilance",
+      "time": 0,
+      "title": "Baseline vigilance is already raised",
+      "explanation": "In a dark, unfamiliar place you are already running hotter than normal. What happens next starts from there, not from calm.",
+      "science": "Context modulates threat responses before any stimulus occurs. The same shape in daylight in your own hallway would produce much less.",
+      "activate": [
+        "locus_coeruleus",
+        "brainstem",
+        "thalamus"
+      ],
+      "intensity": 0.5,
+      "sustain": true,
+      "stage": "ambient",
+      "camera": {
+        "move": "focus",
+        "region": "locus_coeruleus",
+        "duration": 2.0
+      },
+      "causal": true,
+      "kind": "modulatory",
+      "mods": {
+        "novelty": 0.3
+      }
+    },
+    {
+      "id": "scan",
+      "time": 1.0,
+      "title": "Sampling the environment",
+      "explanation": "Your eyes are working in low light with poor colour and poor detail. What is arriving is genuinely unclear.",
+      "source": "retina",
+      "target": "lgn",
+      "activate": [
+        "v1"
+      ],
+      "intensity": 0.55,
+      "hold": 2.0,
+      "stage": "ambient",
+      "kind": "forward",
+      "mods": {
+        "sensoryNoise": 0.4
+      }
+    },
+    {
+      "id": "motion",
+      "time": 2.1,
+      "title": "Something moves",
+      "explanation": "Something moves at the edge of your vision. Very little detail, a lot of urgency.",
+      "source": "lgn",
+      "target": "v1",
+      "activate": [
+        "mt",
+        "superior_colliculus"
+      ],
+      "intensity": 0.9,
+      "hold": 1.4,
+      "stage": "onset",
+      "camera": {
+        "move": "focus",
+        "region": "superior_colliculus",
+        "duration": 1.3
+      },
+      "causal": true,
+      "kind": "burst"
+    },
+    {
+      "id": "fast-route",
+      "time": 3.1,
+      "title": "The fast, coarse route",
+      "explanation": "A quick, rough route gets there first, carrying almost no detail. It is enough to start a reaction.",
+      "science": "The existence of a fast subcortical route for orienting is well supported. Claims that it performs detailed recognition are contested, and we do not make them here.",
+      "source": "thalamus",
+      "target": "amygdala",
+      "intensity": 1.0,
+      "hold": 2.2,
+      "stage": "fast",
+      "camera": {
+        "move": "focus",
+        "region": "amygdala",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "burst",
+      "mods": {
+        "novelty": 0.3,
+        "sensoryNoise": 0.2
+      }
+    },
+    {
+      "id": "sc-amy",
+      "time": 3.4,
+      "title": "Orienting in parallel",
+      "explanation": "At the same time your head and eyes begin turning toward it, before you have identified anything.",
+      "source": "superior_colliculus",
+      "target": "amygdala",
+      "intensity": 0.7,
+      "hold": 1.6,
+      "stage": "fast",
+      "kind": "burst"
+    },
+    {
+      "id": "autonomic",
+      "time": 4.5,
+      "title": "The body is committed",
+      "explanation": "Your body commits. Heart rate, breathing and hormones all change — on evidence that has not been checked yet.",
+      "science": "The bodily response precedes identification. This is a design decision made by evolution: a false alarm is cheap, a missed threat is not.",
+      "source": "amygdala",
+      "target": "hypothalamus",
+      "activate": [
+        "brainstem"
+      ],
+      "intensity": 1.0,
+      "hold": 2.6,
+      "stage": "body",
+      "camera": {
+        "move": "focus",
+        "region": "hypothalamus",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "burst"
+    },
+    {
+      "id": "arousal-up",
+      "time": 5.0,
+      "title": "Global arousal rises",
+      "explanation": "Alertness systems fire broadly. Every other process in your brain is now running with different settings.",
+      "source": "amygdala",
+      "target": "locus_coeruleus",
+      "intensity": 0.95,
+      "hold": 2.6,
+      "stage": "body",
+      "causal": true,
+      "kind": "modulatory"
+    },
+    {
+      "id": "attention-grab",
+      "time": 5.5,
+      "title": "Attention is seized",
+      "explanation": "The thing gets pushed to the top of the queue. Looking away from it is now genuinely effortful.",
+      "source": "amygdala",
+      "target": "parietal",
+      "activate": [
+        "tpj"
+      ],
+      "intensity": 0.85,
+      "hold": 2.0,
+      "stage": "body",
+      "kind": "burst"
+    },
+    {
+      "id": "sensory-boost",
+      "time": 5.9,
+      "title": "Vision is amplified",
+      "explanation": "Your visual system gets turned up, specifically on the thing that set this off.",
+      "source": "amygdala",
+      "target": "v1",
+      "intensity": 0.7,
+      "hold": 2.0,
+      "stage": "body",
+      "kind": "feedback"
+    },
+    {
+      "id": "interocept",
+      "time": 6.2,
+      "title": "The body becomes information",
+      "explanation": "Your racing heart gets reported back inward. It is part of why the moment feels the way it does, not just a side effect.",
+      "science": "Interoceptive signals are an input to affective experience, not only an output of it. This is why the feeling can outlast the realisation that there was no threat.",
+      "source": "amygdala",
+      "target": "insula",
+      "activate": [
+        "acc"
+      ],
+      "intensity": 0.85,
+      "hold": 2.6,
+      "stage": "body",
+      "camera": {
+        "move": "focus",
+        "region": "insula",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "slow-route",
+      "time": 6.9,
+      "title": "The slow route catches up",
+      "explanation": "The slower, detailed route finishes. It is a coat on a chair. That information was always coming — it was just slower.",
+      "source": "object_cortex",
+      "target": "amygdala",
+      "activate": [
+        "visual_feature",
+        "fusiform"
+      ],
+      "intensity": 0.8,
+      "hold": 2.0,
+      "stage": "slow",
+      "camera": {
+        "move": "focus",
+        "region": "object_cortex",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "sensoryNoise": -0.35
+      }
+    },
+    {
+      "id": "context",
+      "time": 7.8,
+      "title": "Context is applied",
+      "explanation": "Where you are, what is plausible here, what happened last time. The situation gets taken into account and sent to calm things down.",
+      "source": "amygdala",
+      "target": "vmpfc",
+      "activate": [
+        "hippocampus"
+      ],
+      "intensity": 0.8,
+      "hold": 2.2,
+      "stage": "slow",
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "regulate",
+      "time": 8.9,
+      "title": "Regulation",
+      "explanation": "The response starts being damped. Not switched off — your body has momentum, and settling takes far longer than starting did.",
+      "science": "Regulation is bidirectional and context-dependent, not prefrontal cortex simply overriding the amygdala. Framing it as an override is one of the most common oversimplifications in popular neuroscience.",
+      "source": "vmpfc",
+      "target": "amygdala",
+      "intensity": 0.9,
+      "hold": 2.0,
+      "stage": "regulate",
+      "camera": {
+        "move": "focus",
+        "region": "vmpfc",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "modulatory"
+    },
+    {
+      "id": "encode",
+      "time": 9.8,
+      "title": "The event is encoded strongly",
+      "explanation": "Being stirred up makes things stick. You will remember this corridor, and the coat, for a long time.",
+      "science": "Emotional arousal is associated with better retention of the central details of an event — and often worse retention of the peripheral ones.",
+      "source": "amygdala",
+      "target": "hippocampus",
+      "intensity": 0.85,
+      "hold": 1.6,
+      "stage": "regulate",
+      "camera": {
+        "move": "focus",
+        "region": "hippocampus",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "settle",
+      "time": 10.6,
+      "title": "Settling",
+      "explanation": "You know there is nothing there. Your body takes several more minutes to agree.",
+      "activate": [
+        "insula",
+        "brainstem",
+        "locus_coeruleus"
+      ],
+      "intensity": 0.45,
+      "hold": 1.0,
+      "stage": "regulate",
+      "camera": {
+        "move": "overview",
+        "duration": 2.6
+      },
+      "causal": true,
+      "kind": "loop"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "f1",
+      "label": "Context raises the baseline",
+      "detail": "Darkness and unfamiliarity have already raised the baseline before anything happens.",
+      "regions": [
+        "locus_coeruleus",
+        "brainstem"
+      ],
+      "event": "vigilance"
+    },
+    {
+      "id": "f2",
+      "label": "Ambiguous motion is detected",
+      "detail": "Low detail, high urgency. Movement at the edge of vision.",
+      "regions": [
+        "mt",
+        "superior_colliculus"
+      ],
+      "event": "motion"
+    },
+    {
+      "id": "f3",
+      "label": "A fast route reaches evaluation",
+      "detail": "A quick route reaches the relevance check before recognition has finished.",
+      "regions": [
+        "thalamus",
+        "amygdala"
+      ],
+      "event": "fast-route"
+    },
+    {
+      "id": "f4",
+      "label": "The body is committed",
+      "detail": "Heart rate, breathing and hormones change on incomplete evidence.",
+      "regions": [
+        "hypothalamus",
+        "brainstem"
+      ],
+      "event": "autonomic"
+    },
+    {
+      "id": "f5",
+      "label": "Bodily state becomes input",
+      "detail": "How your body feels becomes part of how the moment feels.",
+      "regions": [
+        "insula",
+        "acc"
+      ],
+      "event": "interocept"
+    },
+    {
+      "id": "f6",
+      "label": "The slow route resolves it",
+      "detail": "The detailed route finishes and resolves it: no threat.",
+      "regions": [
+        "object_cortex",
+        "fusiform"
+      ],
+      "event": "slow-route"
+    },
+    {
+      "id": "f7",
+      "label": "Regulation begins",
+      "detail": "Calming down begins, with far more inertia than starting had.",
+      "regions": [
+        "vmpfc",
+        "hippocampus"
+      ],
+      "event": "regulate"
+    },
+    {
+      "id": "f8",
+      "label": "Strong encoding",
+      "detail": "Being stirred up tips this event toward being remembered.",
+      "regions": [
+        "amygdala",
+        "hippocampus"
+      ],
+      "event": "encode"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Threat-relevant stimuli produce autonomic and behavioural responses with a latency shorter than that of full cortical recognition."
+    },
+    {
+      "tier": "known",
+      "text": "The amygdala contributes to learning associations between cues and outcomes, and to coordinating bodily and attentional responses to relevant stimuli."
+    },
+    {
+      "tier": "known",
+      "text": "Emotional arousal is associated with stronger retention of the central content of an event."
+    },
+    {
+      "tier": "known",
+      "text": "People with amygdala damage can still report feeling afraid. The structure is not where fear is located."
+    },
+    {
+      "tier": "simplified",
+      "text": "We separate a 'fast' and a 'slow' route into two clean pathways. Both run continuously and in parallel, and the fast one carries less information than the diagram implies."
+    },
+    {
+      "tier": "simplified",
+      "text": "The heartbeat indicator in the interface is a visual device representing the modelled autonomic response. It is not reading your heart rate, and no physiological value shown here is a measurement."
+    },
+    {
+      "tier": "conceptual",
+      "text": "Calling the amygdala a 'fear centre' is wrong in both directions: it does much more than fear, and fear involves much more than it. This scenario deliberately shows it as one node in a network."
+    },
+    {
+      "tier": "conceptual",
+      "text": "This scenario describes a transient threat response in a healthy system. It is not a model of anxiety disorders, and nothing here should be read as clinical information."
+    }
+  ],
+  "references": [
+    {
+      "label": "Threat processing circuits",
+      "note": "Work establishing rapid subcortical contributions to defensive responses alongside slower cortical evaluation."
+    },
+    {
+      "label": "Interoception and affect",
+      "note": "Research on how signals about bodily state contribute to emotional experience rather than merely reflecting it."
+    },
+    {
+      "label": "Extinction and context",
+      "note": "Studies associating ventromedial prefrontal circuits with the context-dependent regulation of learned threat responses."
+    },
+    {
+      "label": "Arousal and memory",
+      "note": "Findings that emotionally arousing events are retained differently, with central details favoured over peripheral ones."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "speed",
+      "label": "Response initiation speed",
+      "base": 0.8,
+      "mods": {
+        "novelty": 0.2,
+        "sensoryNoise": 0.15,
+        "attention": -0.15
+      },
+      "note": "How quickly the reaction starts. Fast, because it does not wait to be sure.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "falseAlarm",
+      "label": "False-alarm tendency",
+      "base": 0.55,
+      "mods": {
+        "sensoryNoise": 0.45,
+        "novelty": 0.3
+      },
+      "note": "How often the model commits to a reaction that turns out to be nothing.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "regulation",
+      "label": "Regulation effectiveness",
+      "base": 0.6,
+      "mods": {
+        "attention": 0.3,
+        "novelty": -0.3,
+        "difficulty": -0.2
+      },
+      "note": "How well the situation manages to calm the reaction back down.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "encoding",
+      "label": "Encoding strength",
+      "base": 0.75,
+      "mods": {
+        "novelty": 0.25,
+        "memoryLoad": -0.2
+      },
+      "note": "How strongly this gets tied into memory.",
+      "polarity": "neutral"
+    }
+  ],
+  "outcome": {
+    "headline": "A threat response",
+    "body": "Your body was committed to a reaction before the information needed to justify it had even arrived. Then recognition caught up, the situation was taken into account, and calming down began — much more slowly than the reaction had started.",
+    "insight": "The system is not trying to be accurate. It is trying to be fast enough, and it accepts false alarms as the price. Part of what fear feels like is a body that has already made up its mind."
+  },
+  "companion": "fear"
+}

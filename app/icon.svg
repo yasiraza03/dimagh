@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--
+    Browser-tab icon: a brain in side profile.
+
+    The cerebrum is built from overlapping circles rather than one clever path.
+    At 16px a tab icon is about eleven usable pixels, so it has to survive as a
+    silhouette — a lobed outline plus three grooves is the most detail that
+    still reads, and overlapping primitives cannot misrender the way a long
+    hand-written path can.
+  -->
+  <rect width="64" height="64" rx="12" fill="#06070a"/>
+
+  <g>
+    <!-- Cerebrum: lobes, drawn as one shape by overlap. -->
+    <g fill="#eef1f4">
+      <circle cx="24" cy="21" r="9.5"/>
+      <circle cx="35" cy="18.5" r="10"/>
+      <circle cx="44" cy="24" r="9"/>
+      <circle cx="21" cy="31" r="9"/>
+      <circle cx="31" cy="30" r="10.5"/>
+      <circle cx="42" cy="33" r="8.5"/>
+      <rect x="18" y="21" width="28" height="16" rx="7"/>
+    </g>
+
+    <!-- Folds. Three strokes, cut out of the silhouette. -->
+    <g stroke="#06070a" stroke-width="2.1" fill="none" stroke-linecap="round">
+      <path d="M22 16.5c3.4 1.6 4.8 4.6 4 7.8"/>
+      <path d="M38 14.5c-2.6 2.4-3.2 5.6-1.6 8.6"/>
+      <path d="M16.5 30c4.4-.4 7.6 1.6 9 5.4"/>
+      <path d="M46 28c-3.6.6-6 2.8-6.6 6"/>
+    </g>
+
+    <!-- Brainstem. -->
+    <rect x="29" y="38" width="5" height="13" rx="2.5" fill="#eef1f4"/>
+
+    <!-- Cerebellum, a shade darker so it separates at small sizes. -->
+    <ellipse cx="41" cy="43" rx="9" ry="6.5" fill="#c3c9d2"/>
+    <g stroke="#06070a" stroke-width="1.2" fill="none" opacity="0.5">
+      <path d="M34 41.5h14"/>
+      <path d="M34.5 45h13"/>
+    </g>
+  </g>
+</svg>

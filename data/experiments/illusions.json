@@ -1,0 +1,157 @@
+{
+  "$comment": "Each experiment is a demonstration you run on yourself. The structure is deliberately identical across all eight: experience it, see what you perceived, see what the input actually contained, then read why the gap matters.",
+  "experiments": [
+    {
+      "id": "muller-lyer",
+      "name": "Müller-Lyer",
+      "component": "MullerLyer",
+      "kind": "geometry",
+      "accent": "cyan",
+      "tagline": "Two identical lines that refuse to look identical.",
+      "experience": "Drag the slider until the two horizontal lines look the same length. Then reveal the measurement.",
+      "perceived": "The line with outward-facing fins looks shorter than the line with inward-facing fins. The difference feels like a fact about the lines.",
+      "actual": "Both shafts are exactly the same number of pixels long. Only the fins differ.",
+      "why": "Length is not something you read off the picture. It is worked out from the surroundings, and the arrowheads are the surroundings. Knowing the lines are equal does not help — which tells you this is happening somewhere your knowledge cannot reach.",
+      "regions": [
+        "v1",
+        "visual_feature",
+        "parietal"
+      ],
+      "mechanism": "Several explanations compete, including accounts based on interpreting the fins as depth cues and accounts based on how the visual system pools information across a contour. No single explanation is settled.",
+      "caveat": "The size of the effect varies between people and across cultures, which is itself informative: some of this inference is shaped by the visual environment you grew up in."
+    },
+    {
+      "id": "checker-shadow",
+      "name": "Checker-shadow",
+      "component": "CheckerShadow",
+      "kind": "lightness",
+      "accent": "bone",
+      "tagline": "Two identical greys, one looks white and one looks black.",
+      "experience": "Compare the two marked squares. Then press the button to connect them with a bridge of the same grey.",
+      "perceived": "One square looks clearly light, the other clearly dark. They do not look remotely similar.",
+      "actual": "Both squares are filled with the same RGB value. Nothing about the pixels differs.",
+      "why": "Your eyes are not reporting the light that reached them. They are guessing what the surface is actually made of and quietly removing the shadow. A grey square in shadow must be a pale square, so that is what you see.",
+      "regions": [
+        "v1",
+        "visual_feature"
+      ],
+      "mechanism": "Lightness constancy. The system solves for surface reflectance given an estimate of the illumination, using cues such as shadow boundaries, gradients and the surrounding context.",
+      "caveat": "This is not a bug. In the world, estimating the surface is almost always the more useful answer than reporting the raw light — which is why the inference is so hard to switch off."
+    },
+    {
+      "id": "kanizsa",
+      "name": "Kanizsa triangle",
+      "component": "Kanizsa",
+      "kind": "contour",
+      "accent": "cyan",
+      "tagline": "A triangle with no edges.",
+      "experience": "Look at the arrangement. Then rotate the inducing shapes and watch the triangle dissolve.",
+      "perceived": "A bright triangle with crisp edges, sitting slightly in front of the discs. Many people report its interior as brighter than the background.",
+      "actual": "Three notched discs. There is no triangle, there are no edges, and the interior is exactly the same colour as the background.",
+      "why": "Edges are not found, they are built. The notches imply something is lying on top, so your brain draws in the shape that would be doing it — including edges that are not in the picture anywhere.",
+      "regions": [
+        "v1",
+        "visual_feature",
+        "object_cortex"
+      ],
+      "mechanism": "Illusory contour completion. Responses consistent with the illusory edge have been recorded in early visual areas, which suggests the construction happens remarkably early.",
+      "caveat": "Rotating the inducers destroys the effect without changing the amount of ink on the page. The percept depends on the configuration, not the content."
+    },
+    {
+      "id": "color-contrast",
+      "name": "Simultaneous colour contrast",
+      "component": "ColorContrast",
+      "kind": "color",
+      "accent": "orange",
+      "tagline": "The same colour, twice, looking like two colours.",
+      "experience": "Compare the two inner patches. Then collapse the surrounds.",
+      "perceived": "The patch on the warm surround looks cooler and duller; the patch on the cool surround looks warmer and more saturated.",
+      "actual": "Both inner patches are the same colour. Only the surrounding field differs.",
+      "why": "Colour is judged against the surroundings, never on its own. Your brain is trying to tell you what colour the thing *is*, and the surroundings are its best clue about the lighting.",
+      "regions": [
+        "v1",
+        "visual_feature"
+      ],
+      "mechanism": "Colour constancy mechanisms, including opponent processing and context-dependent normalisation across the visual field.",
+      "caveat": "This is the same machinery responsible for the periodic internet arguments about the colour of a photographed dress. Different people infer different illumination and therefore genuinely see different colours."
+    },
+    {
+      "id": "motion-aftereffect",
+      "name": "Motion aftereffect",
+      "component": "MotionAftereffect",
+      "kind": "motion",
+      "accent": "blue",
+      "tagline": "Stare at movement. Then watch stillness move.",
+      "experience": "Fixate the centre of the moving pattern for about twenty seconds without moving your eyes, then look at the stationary pattern.",
+      "perceived": "The stationary pattern appears to drift in the opposite direction, usually for several seconds, with no actual change in position.",
+      "actual": "The second pattern is completely static. Nothing in it moves at any point.",
+      "why": "Movement is worked out by comparing cells that like different directions. Stare long enough and the ones you used get tired, so the comparison tips the other way — and a tipped comparison on a still picture reads as motion.",
+      "regions": [
+        "mt",
+        "v1"
+      ],
+      "mechanism": "Adaptation in direction-selective populations. The percept reflects a relative comparison, so reducing one side of the comparison produces a signal where there is no stimulus.",
+      "caveat": "This is strong evidence that perception reports differences between competing signals rather than absolute measurements. The illusion is what that architecture looks like when you unbalance it."
+    },
+    {
+      "id": "change-blindness",
+      "name": "Change blindness",
+      "component": "ChangeBlindness",
+      "kind": "change",
+      "accent": "amber",
+      "tagline": "A large change, in plain view, that you cannot find.",
+      "experience": "Two versions of a scene alternate with a brief blank between them. Find the difference. Then let it be pointed out.",
+      "perceived": "A stable, complete scene — and no change, often for a surprisingly long time, even when you are actively searching for it.",
+      "actual": "A large, high-contrast element changes on every cycle, usually occupying a substantial portion of the image.",
+      "why": "You do not keep a detailed copy of what you are looking at. Detail is fetched where you look, so spotting the change needs you to compare something you may never have stored. Feeling like you see everything is not the same as having seen it.",
+      "regions": [
+        "v1",
+        "parietal",
+        "dlpfc",
+        "object_cortex"
+      ],
+      "mechanism": "The blank interrupts the local motion signal that would normally capture attention, so finding the change requires deliberate comparison of representations you may never have formed.",
+      "caveat": "The subjective sense of a rich, complete visual world is itself the phenomenon worth explaining. This demonstration shows that the richness is not stored — it is available on demand, which feels identical from the inside."
+    },
+    {
+      "id": "stroop",
+      "name": "Stroop effect",
+      "component": "Stroop",
+      "kind": "conflict",
+      "accent": "threat",
+      "tagline": "Naming a colour, while a word fights you.",
+      "experience": "Name the ink colour, not the word, as fast as you can. Two blocks: one where they match, one where they do not.",
+      "perceived": "The mismatched block feels slower and more effortful, and you will probably make at least one error. The interference is felt, not merely measured.",
+      "actual": "Both blocks contain the same number of items and require the same response set. Only the relationship between word and ink differs.",
+      "why": "You cannot choose not to read. The word's meaning turns up whether you want it or not, it suggests the wrong answer, and something has to sort that out — which takes time you can measure.",
+      "regions": [
+        "acc",
+        "dlpfc",
+        "temporoparietal_lang",
+        "visual_feature"
+      ],
+      "mechanism": "Response conflict between an automatic process and a task-instructed one. Conflict is associated with anterior cingulate activity and with subsequent increases in control.",
+      "caveat": "Your reaction times are measured in your browser and never leave your device. They are also not a cognitive assessment — a dozen irrelevant things, including your keyboard, affect them."
+    },
+    {
+      "id": "mcgurk",
+      "name": "Visual capture of speech",
+      "component": "McGurk",
+      "kind": "multisensory",
+      "accent": "green",
+      "tagline": "What you see changes what you hear.",
+      "experience": "A spoken syllable is paired with mouth shapes that do not match it. Switch the visible mouth shape and notice whether the sound seems to change.",
+      "perceived": "Many people report hearing a different syllable depending on the mouth shape shown, even knowing the audio has not changed. Closing your eyes restores the original.",
+      "actual": "The audio is byte-for-byte identical in every condition. Only the visual articulation differs.",
+      "why": "Understanding speech is not purely about hearing. Your brain uses whatever clues it has about how the sound was made, and watching a mouth is a very good clue. The combining happens before you get an answer, so there is no moment where you hear it correctly and then change your mind.",
+      "regions": [
+        "a1",
+        "auditory_assoc",
+        "temporoparietal_lang",
+        "v1"
+      ],
+      "mechanism": "Audiovisual integration in speech perception, with visual articulatory information influencing the perceived phoneme.",
+      "caveat": "This version uses synthesised tones and schematic mouth shapes rather than recorded speech, so the effect is weaker and more variable than the classic demonstration. Not everyone experiences it, and that variation is a real finding rather than a failure on your part."
+    }
+  ]
+}

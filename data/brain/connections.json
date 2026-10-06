@@ -1,0 +1,795 @@
+{
+  "$comment": "Conceptual connection graph. `strength` is a visualisation weight expressing how prominent a pathway is in the systems-level story we tell — it is NOT a measured anatomical tract density or connectivity statistic. `profile` drives the signal-particle animation.",
+  "connections": [
+    {
+      "id": "ret-opt",
+      "source": "retina",
+      "target": "optic_pathway",
+      "direction": "forward",
+      "strength": 1.0,
+      "category": "visual",
+      "profile": "fast",
+      "explanation": "Signals leave the eye along the optic nerve."
+    },
+    {
+      "id": "opt-lgn",
+      "source": "optic_pathway",
+      "target": "lgn",
+      "direction": "forward",
+      "strength": 0.95,
+      "category": "visual",
+      "profile": "fast",
+      "explanation": "Most of what leaves your eye goes through the switchboard in the middle of the brain first."
+    },
+    {
+      "id": "opt-sc",
+      "source": "optic_pathway",
+      "target": "superior_colliculus",
+      "direction": "forward",
+      "strength": 0.55,
+      "category": "orienting",
+      "profile": "fast",
+      "explanation": "A side branch goes to the midbrain, so you can start turning toward something before you know what it is."
+    },
+    {
+      "id": "lgn-v1",
+      "source": "lgn",
+      "target": "v1",
+      "direction": "forward",
+      "strength": 1.0,
+      "category": "visual",
+      "profile": "fast",
+      "explanation": "The main road from the switchboard to the visual map at the back of your head."
+    },
+    {
+      "id": "v1-lgn",
+      "source": "v1",
+      "target": "lgn",
+      "direction": "backward",
+      "strength": 0.7,
+      "category": "feedback",
+      "profile": "modulatory",
+      "explanation": "The brain sends far more signals back down to this gate than the eye sends up to it."
+    },
+    {
+      "id": "v1-vf",
+      "source": "v1",
+      "target": "visual_feature",
+      "direction": "forward",
+      "strength": 0.95,
+      "category": "visual",
+      "profile": "fast",
+      "explanation": "Small details are passed on to be joined into contours and surfaces."
+    },
+    {
+      "id": "vf-v1",
+      "source": "visual_feature",
+      "target": "v1",
+      "direction": "backward",
+      "strength": 0.6,
+      "category": "feedback",
+      "profile": "modulatory",
+      "explanation": "Information travelling backwards, sharpening or filling in what came before. This is one way context changes what you see."
+    },
+    {
+      "id": "v1-mt",
+      "source": "v1",
+      "target": "mt",
+      "direction": "forward",
+      "strength": 0.7,
+      "category": "motion",
+      "profile": "fast",
+      "explanation": "A branch that cares mostly about movement."
+    },
+    {
+      "id": "vf-obj",
+      "source": "visual_feature",
+      "target": "object_cortex",
+      "direction": "forward",
+      "strength": 0.9,
+      "category": "visual",
+      "profile": "fast",
+      "explanation": "Features come together into whole shapes."
+    },
+    {
+      "id": "obj-vf",
+      "source": "object_cortex",
+      "target": "visual_feature",
+      "direction": "backward",
+      "strength": 0.55,
+      "category": "feedback",
+      "profile": "modulatory",
+      "explanation": "A possible answer travels back down and tips the earlier stages in its favour."
+    },
+    {
+      "id": "obj-fus",
+      "source": "object_cortex",
+      "target": "fusiform",
+      "direction": "bidirectional",
+      "strength": 0.8,
+      "category": "recognition",
+      "profile": "sustained",
+      "explanation": "Shape meets category: what it looks like meets what kind of thing it is."
+    },
+    {
+      "id": "fus-hpc",
+      "source": "fusiform",
+      "target": "hippocampus",
+      "direction": "bidirectional",
+      "strength": 0.7,
+      "category": "memory",
+      "profile": "sustained",
+      "explanation": "What you recognised becomes available to memory, and stored associations feed back the other way."
+    },
+    {
+      "id": "fus-ptl",
+      "source": "fusiform",
+      "target": "temporoparietal_lang",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "semantic",
+      "profile": "sustained",
+      "explanation": "Recognising something by sight uses some of the same knowledge language does."
+    },
+    {
+      "id": "mt-par",
+      "source": "mt",
+      "target": "parietal",
+      "direction": "forward",
+      "strength": 0.75,
+      "category": "attention",
+      "profile": "fast",
+      "explanation": "Movement and position feed the system that tracks where things are."
+    },
+    {
+      "id": "vf-par",
+      "source": "visual_feature",
+      "target": "parietal",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "attention",
+      "profile": "fast",
+      "explanation": "What you see feeds the running sense of where things are and which ones matter."
+    },
+    {
+      "id": "par-v1",
+      "source": "parietal",
+      "target": "v1",
+      "direction": "backward",
+      "strength": 0.65,
+      "category": "attention",
+      "profile": "modulatory",
+      "explanation": "Attention turns up the gain on early vision wherever you are looking."
+    },
+    {
+      "id": "par-vf",
+      "source": "parietal",
+      "target": "visual_feature",
+      "direction": "backward",
+      "strength": 0.6,
+      "category": "attention",
+      "profile": "modulatory",
+      "explanation": "Attention tilts mid-level vision toward whatever the task needs."
+    },
+    {
+      "id": "fef-par",
+      "source": "fef",
+      "target": "parietal",
+      "direction": "bidirectional",
+      "strength": 0.85,
+      "category": "attention",
+      "profile": "sustained",
+      "explanation": "A loop between the front and top of the brain that holds attention where you put it."
+    },
+    {
+      "id": "fef-v1",
+      "source": "fef",
+      "target": "v1",
+      "direction": "backward",
+      "strength": 0.5,
+      "category": "attention",
+      "profile": "modulatory",
+      "explanation": "The front of the brain can bias early vision without your eyes moving at all."
+    },
+    {
+      "id": "dlpfc-fef",
+      "source": "dlpfc",
+      "target": "fef",
+      "direction": "forward",
+      "strength": 0.8,
+      "category": "control",
+      "profile": "sustained",
+      "explanation": "Whatever you are trying to do shapes where attention goes."
+    },
+    {
+      "id": "dlpfc-par",
+      "source": "dlpfc",
+      "target": "parietal",
+      "direction": "bidirectional",
+      "strength": 0.85,
+      "category": "control",
+      "profile": "sustained",
+      "explanation": "Goal and priority are traded back and forth constantly while you hold a task."
+    },
+    {
+      "id": "dlpfc-obj",
+      "source": "dlpfc",
+      "target": "object_cortex",
+      "direction": "backward",
+      "strength": 0.55,
+      "category": "control",
+      "profile": "modulatory",
+      "explanation": "What you are looking for tilts recognition before anything appears."
+    },
+    {
+      "id": "tpj-dlpfc",
+      "source": "tpj",
+      "target": "dlpfc",
+      "direction": "forward",
+      "strength": 0.7,
+      "category": "reorienting",
+      "profile": "burst",
+      "explanation": "Something unexpected happened — your current goal might be the wrong one."
+    },
+    {
+      "id": "tpj-par",
+      "source": "tpj",
+      "target": "parietal",
+      "direction": "forward",
+      "strength": 0.65,
+      "category": "reorienting",
+      "profile": "burst",
+      "explanation": "An interruption shoves the priority map toward whatever just happened."
+    },
+    {
+      "id": "acc-dlpfc",
+      "source": "acc",
+      "target": "dlpfc",
+      "direction": "bidirectional",
+      "strength": 0.8,
+      "category": "control",
+      "profile": "sustained",
+      "explanation": "Noticing a clash or a mistake is followed by trying harder."
+    },
+    {
+      "id": "acc-premotor",
+      "source": "acc",
+      "target": "premotor",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "control",
+      "profile": "sustained",
+      "explanation": "Those adjustments reach the systems getting ready to respond."
+    },
+    {
+      "id": "a1-aud",
+      "source": "a1",
+      "target": "auditory_assoc",
+      "direction": "forward",
+      "strength": 0.95,
+      "category": "auditory",
+      "profile": "fast",
+      "explanation": "Pitch and timing are passed on for structure to be found in them."
+    },
+    {
+      "id": "aud-a1",
+      "source": "auditory_assoc",
+      "target": "a1",
+      "direction": "backward",
+      "strength": 0.5,
+      "category": "feedback",
+      "profile": "modulatory",
+      "explanation": "Expectations about the next speech sound feed back onto earlier hearing."
+    },
+    {
+      "id": "aud-ptl",
+      "source": "auditory_assoc",
+      "target": "temporoparietal_lang",
+      "direction": "forward",
+      "strength": 0.9,
+      "category": "language",
+      "profile": "sustained",
+      "explanation": "Speech-like sound is matched against words you know."
+    },
+    {
+      "id": "ptl-ifg",
+      "source": "temporoparietal_lang",
+      "target": "inferior_frontal",
+      "direction": "bidirectional",
+      "strength": 0.9,
+      "category": "language",
+      "profile": "sustained",
+      "explanation": "A loop linking how a word sounds, how it fits the sentence, and how to say it."
+    },
+    {
+      "id": "ifg-premotor",
+      "source": "inferior_frontal",
+      "target": "premotor",
+      "direction": "forward",
+      "strength": 0.7,
+      "category": "language",
+      "profile": "sustained",
+      "explanation": "Planned speech is handed over to the systems that actually move your mouth."
+    },
+    {
+      "id": "ptl-hpc",
+      "source": "temporoparietal_lang",
+      "target": "hippocampus",
+      "direction": "bidirectional",
+      "strength": 0.55,
+      "category": "memory",
+      "profile": "sustained",
+      "explanation": "Words can trigger memories, and memories supply context for words."
+    },
+    {
+      "id": "aud-amy",
+      "source": "auditory_assoc",
+      "target": "amygdala",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "salience",
+      "profile": "burst",
+      "explanation": "Sounds are checked for whether they matter at the same time as they are identified."
+    },
+    {
+      "id": "tha-amy",
+      "source": "thalamus",
+      "target": "amygdala",
+      "direction": "forward",
+      "strength": 0.75,
+      "category": "salience",
+      "profile": "fast",
+      "explanation": "A quick, rough route that gets sensory information to the relevance check early."
+    },
+    {
+      "id": "sc-amy",
+      "source": "superior_colliculus",
+      "target": "amygdala",
+      "direction": "forward",
+      "strength": 0.5,
+      "category": "salience",
+      "profile": "fast",
+      "explanation": "Rough visual information from the midbrain feeds the fast threat check."
+    },
+    {
+      "id": "obj-amy",
+      "source": "object_cortex",
+      "target": "amygdala",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "salience",
+      "profile": "sustained",
+      "explanation": "A slower route carrying far more detail to the same check."
+    },
+    {
+      "id": "amy-hyp",
+      "source": "amygdala",
+      "target": "hypothalamus",
+      "direction": "forward",
+      "strength": 0.85,
+      "category": "autonomic",
+      "profile": "burst",
+      "explanation": "Something matters — get the body ready. Heart rate, breathing, hormones."
+    },
+    {
+      "id": "amy-bs",
+      "source": "amygdala",
+      "target": "brainstem",
+      "direction": "forward",
+      "strength": 0.8,
+      "category": "autonomic",
+      "profile": "burst",
+      "explanation": "Signals heading down that set off startle and automatic body responses."
+    },
+    {
+      "id": "amy-lc",
+      "source": "amygdala",
+      "target": "locus_coeruleus",
+      "direction": "forward",
+      "strength": 0.7,
+      "category": "arousal",
+      "profile": "burst",
+      "explanation": "Alertness systems are called in, changing how the whole brain responds."
+    },
+    {
+      "id": "lc-cortex",
+      "source": "locus_coeruleus",
+      "target": "dlpfc",
+      "direction": "forward",
+      "strength": 0.65,
+      "category": "arousal",
+      "profile": "modulatory",
+      "explanation": "A broad chemical signal that changes how responsive the brain is, rather than carrying a message."
+    },
+    {
+      "id": "lc-v1",
+      "source": "locus_coeruleus",
+      "target": "v1",
+      "direction": "forward",
+      "strength": 0.5,
+      "category": "arousal",
+      "profile": "modulatory",
+      "explanation": "Even basic vision is retuned by how alert you are."
+    },
+    {
+      "id": "lc-tha",
+      "source": "locus_coeruleus",
+      "target": "thalamus",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "arousal",
+      "profile": "modulatory",
+      "explanation": "Alertness sets how open the central gate is."
+    },
+    {
+      "id": "amy-ins",
+      "source": "amygdala",
+      "target": "insula",
+      "direction": "bidirectional",
+      "strength": 0.7,
+      "category": "affect",
+      "profile": "sustained",
+      "explanation": "How your body feels and what matters right now inform each other."
+    },
+    {
+      "id": "ins-acc",
+      "source": "insula",
+      "target": "acc",
+      "direction": "bidirectional",
+      "strength": 0.75,
+      "category": "salience",
+      "profile": "sustained",
+      "explanation": "A loop that flags what is worth reacting to."
+    },
+    {
+      "id": "amy-par",
+      "source": "amygdala",
+      "target": "parietal",
+      "direction": "forward",
+      "strength": 0.55,
+      "category": "attention",
+      "profile": "burst",
+      "explanation": "Things that matter get pushed up the attention queue."
+    },
+    {
+      "id": "amy-v1",
+      "source": "amygdala",
+      "target": "v1",
+      "direction": "backward",
+      "strength": 0.45,
+      "category": "feedback",
+      "profile": "modulatory",
+      "explanation": "Something that mattered gets looked at harder."
+    },
+    {
+      "id": "vmpfc-amy",
+      "source": "vmpfc",
+      "target": "amygdala",
+      "direction": "backward",
+      "strength": 0.75,
+      "category": "regulation",
+      "profile": "modulatory",
+      "explanation": "Calming the response down, given the situation. The influence runs both ways."
+    },
+    {
+      "id": "amy-vmpfc",
+      "source": "amygdala",
+      "target": "vmpfc",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "affect",
+      "profile": "sustained",
+      "explanation": "What matters feeds into working out what things are worth."
+    },
+    {
+      "id": "amy-hpc",
+      "source": "amygdala",
+      "target": "hippocampus",
+      "direction": "bidirectional",
+      "strength": 0.7,
+      "category": "memory",
+      "profile": "sustained",
+      "explanation": "Things that stirred you up tend to be remembered better."
+    },
+    {
+      "id": "ec-hpc",
+      "source": "entorhinal",
+      "target": "hippocampus",
+      "direction": "bidirectional",
+      "strength": 0.95,
+      "category": "memory",
+      "profile": "sustained",
+      "explanation": "The main doorway in and out of memory, busy in both directions."
+    },
+    {
+      "id": "fus-ec",
+      "source": "fusiform",
+      "target": "entorhinal",
+      "direction": "forward",
+      "strength": 0.7,
+      "category": "memory",
+      "profile": "sustained",
+      "explanation": "Recognised content enters the memory system here."
+    },
+    {
+      "id": "par-ec",
+      "source": "parietal",
+      "target": "entorhinal",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "memory",
+      "profile": "sustained",
+      "explanation": "Where you were, bound in alongside what you saw."
+    },
+    {
+      "id": "hpc-pcun",
+      "source": "hippocampus",
+      "target": "precuneus",
+      "direction": "bidirectional",
+      "strength": 0.8,
+      "category": "memory",
+      "profile": "sustained",
+      "explanation": "Rebuilding the place and the setting a memory happened in."
+    },
+    {
+      "id": "hpc-dlpfc",
+      "source": "hippocampus",
+      "target": "dlpfc",
+      "direction": "bidirectional",
+      "strength": 0.7,
+      "category": "memory",
+      "profile": "sustained",
+      "explanation": "Remembering on purpose: hold a cue, check what comes back, try again."
+    },
+    {
+      "id": "hpc-fus",
+      "source": "hippocampus",
+      "target": "fusiform",
+      "direction": "backward",
+      "strength": 0.65,
+      "category": "memory",
+      "profile": "modulatory",
+      "explanation": "Bringing a memory back partly switches the seeing parts on again."
+    },
+    {
+      "id": "hpc-ec-cortex",
+      "source": "hippocampus",
+      "target": "object_cortex",
+      "direction": "backward",
+      "strength": 0.5,
+      "category": "memory",
+      "profile": "modulatory",
+      "explanation": "A partial cue can fill in details that were never clearly stored."
+    },
+    {
+      "id": "pcun-dlpfc",
+      "source": "precuneus",
+      "target": "dlpfc",
+      "direction": "bidirectional",
+      "strength": 0.6,
+      "category": "memory",
+      "profile": "sustained",
+      "explanation": "Is the thing you just reconstructed actually the answer to the question?"
+    },
+    {
+      "id": "obj-ofc",
+      "source": "object_cortex",
+      "target": "ofc",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "value",
+      "profile": "sustained",
+      "explanation": "What something is feeds into what it is worth right now."
+    },
+    {
+      "id": "ofc-vmpfc",
+      "source": "ofc",
+      "target": "vmpfc",
+      "direction": "bidirectional",
+      "strength": 0.8,
+      "category": "value",
+      "profile": "sustained",
+      "explanation": "Worth, and worth-given-the-situation, are tightly linked."
+    },
+    {
+      "id": "vmpfc-bg",
+      "source": "vmpfc",
+      "target": "basal_ganglia",
+      "direction": "forward",
+      "strength": 0.7,
+      "category": "decision",
+      "profile": "sustained",
+      "explanation": "What something is worth tips which action gets chosen."
+    },
+    {
+      "id": "dlpfc-premotor",
+      "source": "dlpfc",
+      "target": "premotor",
+      "direction": "forward",
+      "strength": 0.85,
+      "category": "decision",
+      "profile": "sustained",
+      "explanation": "A decision is handed to the systems that work out the movement."
+    },
+    {
+      "id": "bg-premotor",
+      "source": "basal_ganglia",
+      "target": "premotor",
+      "direction": "bidirectional",
+      "strength": 0.85,
+      "category": "motor",
+      "profile": "sustained",
+      "explanation": "Loops that release the chosen action and hold the alternatives back."
+    },
+    {
+      "id": "premotor-m1",
+      "source": "premotor",
+      "target": "motor_cortex",
+      "direction": "forward",
+      "strength": 0.95,
+      "category": "motor",
+      "profile": "fast",
+      "explanation": "A worked-out plan becomes a command that can actually be sent."
+    },
+    {
+      "id": "m1-muscle",
+      "source": "motor_cortex",
+      "target": "muscle",
+      "direction": "forward",
+      "strength": 1.0,
+      "category": "motor",
+      "profile": "fast",
+      "explanation": "The command goes down the spinal cord and your muscles fire."
+    },
+    {
+      "id": "muscle-s1",
+      "source": "muscle",
+      "target": "somatosensory",
+      "direction": "forward",
+      "strength": 0.85,
+      "category": "feedback",
+      "profile": "fast",
+      "explanation": "Moving produces touch and position signals that come straight back."
+    },
+    {
+      "id": "s1-cb",
+      "source": "somatosensory",
+      "target": "cerebellum",
+      "direction": "forward",
+      "strength": 0.8,
+      "category": "feedback",
+      "profile": "fast",
+      "explanation": "What actually happened arrives, to be compared with what was predicted."
+    },
+    {
+      "id": "premotor-cb",
+      "source": "premotor",
+      "target": "cerebellum",
+      "direction": "forward",
+      "strength": 0.8,
+      "category": "prediction",
+      "profile": "fast",
+      "explanation": "A copy of the command, so the result can be predicted before it happens."
+    },
+    {
+      "id": "cb-m1",
+      "source": "cerebellum",
+      "target": "motor_cortex",
+      "direction": "backward",
+      "strength": 0.85,
+      "category": "correction",
+      "profile": "fast",
+      "explanation": "The gap between predicted and actual becomes a correction, mid-movement."
+    },
+    {
+      "id": "cb-tha",
+      "source": "cerebellum",
+      "target": "thalamus",
+      "direction": "forward",
+      "strength": 0.7,
+      "category": "correction",
+      "profile": "fast",
+      "explanation": "Corrections reach the rest of the brain through the central switchboard."
+    },
+    {
+      "id": "s1-par",
+      "source": "somatosensory",
+      "target": "parietal",
+      "direction": "forward",
+      "strength": 0.7,
+      "category": "integration",
+      "profile": "sustained",
+      "explanation": "Where your body is, folded into your sense of the space around you."
+    },
+    {
+      "id": "par-premotor",
+      "source": "parietal",
+      "target": "premotor",
+      "direction": "forward",
+      "strength": 0.8,
+      "category": "motor",
+      "profile": "sustained",
+      "explanation": "Where the target is, in terms your arm can actually use."
+    },
+    {
+      "id": "sc-premotor",
+      "source": "superior_colliculus",
+      "target": "premotor",
+      "direction": "forward",
+      "strength": 0.45,
+      "category": "orienting",
+      "profile": "fast",
+      "explanation": "You can start turning before the slower route has worked out what it is."
+    },
+    {
+      "id": "tha-v1",
+      "source": "thalamus",
+      "target": "v1",
+      "direction": "bidirectional",
+      "strength": 0.7,
+      "category": "state",
+      "profile": "modulatory",
+      "explanation": "Loops whose rhythm changes completely between being awake and asleep."
+    },
+    {
+      "id": "tha-dlpfc",
+      "source": "thalamus",
+      "target": "dlpfc",
+      "direction": "bidirectional",
+      "strength": 0.75,
+      "category": "state",
+      "profile": "modulatory",
+      "explanation": "Wide-reaching loops that set the overall state of the brain."
+    },
+    {
+      "id": "hyp-bs",
+      "source": "hypothalamus",
+      "target": "brainstem",
+      "direction": "bidirectional",
+      "strength": 0.8,
+      "category": "state",
+      "profile": "modulatory",
+      "explanation": "The circuitry that switches you between awake and asleep."
+    },
+    {
+      "id": "bs-tha",
+      "source": "brainstem",
+      "target": "thalamus",
+      "direction": "forward",
+      "strength": 0.85,
+      "category": "arousal",
+      "profile": "modulatory",
+      "explanation": "Alertness systems decide whether the central gate is open at all."
+    },
+    {
+      "id": "bs-muscle",
+      "source": "brainstem",
+      "target": "muscle",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "state",
+      "profile": "modulatory",
+      "explanation": "During dreaming sleep, signals going down keep your muscles still so you do not act it out."
+    },
+    {
+      "id": "hpc-pcun-sleep",
+      "source": "hippocampus",
+      "target": "precuneus",
+      "direction": "forward",
+      "strength": 0.6,
+      "category": "consolidation",
+      "profile": "burst",
+      "explanation": "While you sleep, recent experiences are replayed and made more stable."
+    },
+    {
+      "id": "hpc-fus-sleep",
+      "source": "hippocampus",
+      "target": "fusiform",
+      "direction": "forward",
+      "strength": 0.55,
+      "category": "consolidation",
+      "profile": "burst",
+      "explanation": "That replay reaches the parts that originally did the seeing and hearing."
+    }
+  ]
+}

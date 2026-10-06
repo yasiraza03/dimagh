@@ -1,0 +1,437 @@
+{
+  "id": "distraction",
+  "code": "GET DISTRACTED",
+  "title": "Getting distracted",
+  "subtitle": "Why a notification costs more than a glance",
+  "question": "What happens when you get interrupted?",
+  "duration": 10.6,
+  "estimate": "3 min",
+  "lens": "attention",
+  "accent": "amber",
+  "teaser": "Read a paragraph while the screen tries to take you away from it.",
+  "intro": "Switching tasks is not free, and the cost is not the few seconds you looked away. It is the cost of taking apart one set of goals and building another — plus the leftovers of the first one that keep leaking into the second.",
+  "stages": [
+    {
+      "id": "engaged",
+      "label": "On task",
+      "time": 0
+    },
+    {
+      "id": "intrusion",
+      "label": "Intrusion",
+      "time": 2.8
+    },
+    {
+      "id": "conflict",
+      "label": "Conflict",
+      "time": 4.6
+    },
+    {
+      "id": "switch",
+      "label": "Switch",
+      "time": 6.4
+    },
+    {
+      "id": "residue",
+      "label": "Residue",
+      "time": 8.4
+    }
+  ],
+  "events": [
+    {
+      "id": "reading",
+      "time": 0,
+      "title": "Reading",
+      "explanation": "Reading means holding a goal, your place on the page, and a half-built sense of the sentence — all at once, all actively.",
+      "activate": [
+        "dlpfc",
+        "temporoparietal_lang",
+        "inferior_frontal"
+      ],
+      "intensity": 0.85,
+      "hold": 3.2,
+      "stage": "engaged",
+      "camera": {
+        "move": "focus",
+        "region": "temporoparietal_lang",
+        "duration": 1.8
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "memoryLoad": -0.25,
+        "attention": 0.25
+      }
+    },
+    {
+      "id": "comprehend",
+      "time": 1.2,
+      "title": "Building meaning",
+      "explanation": "Words are being turned into meaning and fitted into a running picture of the sentence. That picture is what you lose when you look away.",
+      "source": "temporoparietal_lang",
+      "target": "inferior_frontal",
+      "intensity": 0.85,
+      "hold": 2.4,
+      "stage": "engaged",
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "maintain",
+      "time": 2.0,
+      "title": "Holding the thread",
+      "explanation": "Something has to keep the task steady while everything else competes for you.",
+      "source": "dlpfc",
+      "target": "temporoparietal_lang",
+      "intensity": 0.8,
+      "hold": 2.0,
+      "stage": "engaged",
+      "kind": "modulatory",
+      "mods": {
+        "attention": 0.3,
+        "distraction": -0.3
+      }
+    },
+    {
+      "id": "notification",
+      "time": 2.9,
+      "title": "Something appears",
+      "explanation": "Something sudden, unexpected, and possibly important. 'Possibly important' is the key part — notifications are built to pass that test.",
+      "science": "Abrupt onsets capture attention especially effectively. Designers of notification systems did not discover this by accident.",
+      "activate": [
+        "superior_colliculus",
+        "tpj"
+      ],
+      "intensity": 0.95,
+      "hold": 1.2,
+      "stage": "intrusion",
+      "camera": {
+        "move": "focus",
+        "region": "tpj",
+        "duration": 1.3
+      },
+      "causal": true,
+      "kind": "burst",
+      "mods": {
+        "novelty": 0.4,
+        "distraction": 0.35
+      }
+    },
+    {
+      "id": "interrupt",
+      "time": 3.5,
+      "title": "An interrupt signal",
+      "explanation": "A signal that your current goal might no longer be the right one. This happens whether you want it to or not.",
+      "source": "tpj",
+      "target": "dlpfc",
+      "intensity": 0.95,
+      "hold": 1.4,
+      "stage": "intrusion",
+      "causal": true,
+      "kind": "burst",
+      "mods": {
+        "distraction": 0.4
+      }
+    },
+    {
+      "id": "priority-shift",
+      "time": 4.1,
+      "title": "Priority shifts",
+      "explanation": "Priority slides toward the new thing. Your eyes may already be moving.",
+      "source": "tpj",
+      "target": "parietal",
+      "activate": [
+        "fef"
+      ],
+      "intensity": 0.9,
+      "hold": 1.6,
+      "stage": "intrusion",
+      "causal": true,
+      "kind": "burst"
+    },
+    {
+      "id": "conflict",
+      "time": 4.8,
+      "title": "Two goals at once",
+      "explanation": "Keep reading, or deal with the new thing. Both are live, and something notices the clash.",
+      "source": "parietal",
+      "target": "acc",
+      "activate": [
+        "acc"
+      ],
+      "intensity": 0.9,
+      "hold": 2.0,
+      "stage": "conflict",
+      "camera": {
+        "move": "focus",
+        "region": "acc",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "distraction": 0.3,
+        "difficulty": 0.25
+      }
+    },
+    {
+      "id": "control-up",
+      "time": 5.5,
+      "title": "Control is increased",
+      "explanation": "Noticing a clash is followed by trying harder. That is why the second interruption in a row feels more tiring to resist.",
+      "source": "acc",
+      "target": "dlpfc",
+      "intensity": 0.9,
+      "hold": 2.2,
+      "stage": "conflict",
+      "causal": true,
+      "kind": "modulatory",
+      "mods": {
+        "attention": 0.3
+      }
+    },
+    {
+      "id": "switch",
+      "time": 6.5,
+      "title": "The configuration is rebuilt",
+      "explanation": "Switching means loading a different set of goals and expectations. That rebuild takes time that feels like nothing is happening.",
+      "science": "Task-switch costs appear even when the switch is fully predictable and the person has had time to prepare, which argues that part of the cost is reconfiguration itself.",
+      "source": "dlpfc",
+      "target": "premotor",
+      "activate": [
+        "dlpfc",
+        "basal_ganglia"
+      ],
+      "intensity": 0.95,
+      "hold": 1.8,
+      "stage": "switch",
+      "camera": {
+        "move": "focus",
+        "region": "dlpfc",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "memoryLoad": 0.3,
+        "difficulty": 0.25
+      }
+    },
+    {
+      "id": "wm-load",
+      "time": 7.2,
+      "title": "Working memory takes the hit",
+      "explanation": "The half-built sense of the sentence was only being held in mind. Nothing wrote it down. It fades.",
+      "activate": [
+        "dlpfc",
+        "parietal"
+      ],
+      "intensity": 0.5,
+      "hold": 1.4,
+      "stage": "switch",
+      "causal": true,
+      "kind": "loop",
+      "mods": {
+        "memoryLoad": 0.4,
+        "distraction": 0.3
+      }
+    },
+    {
+      "id": "residue",
+      "time": 8.5,
+      "title": "Residue",
+      "explanation": "The abandoned task does not shut off cleanly. Bits of it stay active and get in the way of the new one.",
+      "science": "This carry-over is measurable as slower, more error-prone performance on the new task for some time after the switch.",
+      "activate": [
+        "temporoparietal_lang",
+        "inferior_frontal",
+        "acc"
+      ],
+      "intensity": 0.45,
+      "hold": 1.6,
+      "stage": "residue",
+      "camera": {
+        "move": "orbit",
+        "region": "acc",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "loop",
+      "mods": {
+        "distraction": 0.35
+      }
+    },
+    {
+      "id": "resume",
+      "time": 9.6,
+      "title": "Finding your place",
+      "explanation": "You go back to the paragraph and re-read the last sentence. That re-read is the cost, made visible.",
+      "source": "dlpfc",
+      "target": "temporoparietal_lang",
+      "intensity": 0.75,
+      "hold": 0.8,
+      "stage": "residue",
+      "camera": {
+        "move": "overview",
+        "duration": 2.2
+      },
+      "causal": true,
+      "kind": "modulatory"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "d1",
+      "label": "A task configuration is held",
+      "detail": "Goal, place and half-built meaning are all being actively held.",
+      "regions": [
+        "dlpfc",
+        "temporoparietal_lang"
+      ],
+      "event": "reading"
+    },
+    {
+      "id": "d2",
+      "label": "An abrupt event occurs",
+      "detail": "Something sudden and apparently relevant appears — the most effective combination there is.",
+      "regions": [
+        "tpj",
+        "superior_colliculus"
+      ],
+      "event": "notification"
+    },
+    {
+      "id": "d3",
+      "label": "Reorienting is signalled",
+      "detail": "Reorienting is not a request. Priority starts moving.",
+      "regions": [
+        "tpj",
+        "parietal"
+      ],
+      "event": "interrupt"
+    },
+    {
+      "id": "d4",
+      "label": "Conflict is detected",
+      "detail": "Two incompatible goals are live at the same time.",
+      "regions": [
+        "acc"
+      ],
+      "event": "conflict"
+    },
+    {
+      "id": "d5",
+      "label": "Control increases",
+      "detail": "The clash triggers an adjustment that makes resisting possible, and tiring.",
+      "regions": [
+        "dlpfc",
+        "acc"
+      ],
+      "event": "control-up"
+    },
+    {
+      "id": "d6",
+      "label": "Reconfiguration",
+      "detail": "A different set of goals gets loaded. That takes time no matter how ready you were.",
+      "regions": [
+        "dlpfc",
+        "basal_ganglia"
+      ],
+      "event": "switch"
+    },
+    {
+      "id": "d7",
+      "label": "The old task leaks",
+      "detail": "Leftovers from the abandoned task keep interfering with the new one.",
+      "regions": [
+        "temporoparietal_lang",
+        "acc"
+      ],
+      "event": "residue"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Switching between tasks produces reliable costs in speed and accuracy, even when the switch is predictable and prepared for."
+    },
+    {
+      "tier": "known",
+      "text": "Abrupt onsets and unexpected but relevant events capture attention involuntarily and engage a right-lateralised ventral network."
+    },
+    {
+      "tier": "known",
+      "text": "Response conflict is followed by measurable adjustments in subsequent control, a pattern robust across many task designs."
+    },
+    {
+      "tier": "simplified",
+      "text": "We draw a clean switch from one task to another. In practice the two overlap, and the interference between them is continuous rather than staged."
+    },
+    {
+      "tier": "simplified",
+      "text": "The 'working memory bar' depletes smoothly here. Real capacity limits are better described as interference between similar representations than as a tank emptying."
+    },
+    {
+      "tier": "conceptual",
+      "text": "Nothing here measures your focus. The bars respond to the simulation's own parameters, which you control."
+    }
+  ],
+  "references": [
+    {
+      "label": "Task-switching costs",
+      "note": "A large literature establishing that reconfiguring a task set carries measurable costs independent of time away from the task."
+    },
+    {
+      "label": "Attentional capture",
+      "note": "Work on how abrupt onsets and goal-relevant features involuntarily draw attention."
+    },
+    {
+      "label": "Conflict monitoring and control",
+      "note": "An influential account in which conflict signals drive subsequent increases in cognitive control."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "onTask",
+      "label": "On-task stability",
+      "base": 0.65,
+      "mods": {
+        "attention": 0.4,
+        "distraction": -0.45,
+        "novelty": -0.15
+      },
+      "note": "How well the task you were on survives the interruption.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "switchCost",
+      "label": "Reconfiguration cost",
+      "base": 0.45,
+      "mods": {
+        "distraction": 0.4,
+        "memoryLoad": 0.3,
+        "difficulty": 0.25,
+        "attention": -0.2
+      },
+      "note": "How expensive it is to rebuild. Higher is worse.",
+      "polarity": "good-low"
+    },
+    {
+      "id": "carryover",
+      "label": "Interference carry-over",
+      "base": 0.4,
+      "mods": {
+        "distraction": 0.4,
+        "memoryLoad": 0.25
+      },
+      "note": "How much of the abandoned task keeps leaking into the new one.",
+      "polarity": "good-low"
+    }
+  ],
+  "outcome": {
+    "headline": "Being interrupted",
+    "body": "The notification did not cost you the four seconds you spent reading it. It cost you the sentence you were holding, the time to rebuild your goal, and a stretch afterwards where the old task kept getting in the way.",
+    "insight": "You cannot decide not to be interrupted. You can only decide what gets to interrupt you — and that is a decision you make beforehand, not in the moment."
+  },
+  "companion": "distraction"
+}

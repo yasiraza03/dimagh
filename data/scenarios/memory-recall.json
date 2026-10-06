@@ -1,0 +1,430 @@
+{
+  "id": "memory-recall",
+  "code": "REMEMBER",
+  "title": "Retrieving a memory",
+  "subtitle": "Reconstruction, not playback",
+  "question": "What happens when you remember something?",
+  "duration": 11.4,
+  "estimate": "3 min",
+  "lens": "memory",
+  "accent": "violet",
+  "teaser": "Look at a scene for four seconds. Then find out which parts you actually kept.",
+  "intro": "Remembering feels like watching a recording. It is closer to building a plausible scene out of fragments, filling the gaps with whatever usually happens, and then experiencing the result with nothing to tell you which parts were real.",
+  "stages": [
+    {
+      "id": "cue",
+      "label": "The cue",
+      "time": 0
+    },
+    {
+      "id": "search",
+      "label": "Search",
+      "time": 2.2
+    },
+    {
+      "id": "complete",
+      "label": "Pattern completion",
+      "time": 4.2
+    },
+    {
+      "id": "reinstate",
+      "label": "Reinstatement",
+      "time": 6.2
+    },
+    {
+      "id": "evaluate",
+      "label": "Evaluation",
+      "time": 8.6
+    }
+  ],
+  "events": [
+    {
+      "id": "cue",
+      "time": 0,
+      "title": "A cue arrives",
+      "explanation": "A question, a word, a smell. Remembering always starts from a fragment — never from the memory itself.",
+      "activate": [
+        "temporoparietal_lang",
+        "dlpfc"
+      ],
+      "intensity": 0.85,
+      "hold": 2.4,
+      "stage": "cue",
+      "camera": {
+        "move": "focus",
+        "region": "dlpfc",
+        "duration": 1.8
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "goal",
+      "time": 0.9,
+      "title": "A retrieval goal is set",
+      "explanation": "'What was on the table?' becomes a definition of what would count as an answer. That definition shapes what comes back.",
+      "source": "temporoparietal_lang",
+      "target": "dlpfc",
+      "intensity": 0.85,
+      "sustain": true,
+      "stage": "cue",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "memoryLoad": -0.25
+      }
+    },
+    {
+      "id": "search",
+      "time": 2.3,
+      "title": "The search begins",
+      "explanation": "Something queries the memory system. If the first attempt fails, the question gets rephrased and asked again.",
+      "source": "dlpfc",
+      "target": "hippocampus",
+      "intensity": 0.9,
+      "hold": 2.4,
+      "stage": "search",
+      "camera": {
+        "move": "focus",
+        "region": "hippocampus",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "attention": 0.25,
+        "difficulty": -0.2
+      }
+    },
+    {
+      "id": "entry",
+      "time": 3.0,
+      "title": "Through the gateway, inward",
+      "explanation": "The cue goes in through the same doorway the original experience used.",
+      "source": "entorhinal",
+      "target": "hippocampus",
+      "intensity": 0.85,
+      "hold": 2.2,
+      "stage": "search",
+      "kind": "forward"
+    },
+    {
+      "id": "complete",
+      "time": 4.3,
+      "title": "Pattern completion",
+      "explanation": "Part of a stored pattern is enough to trigger the rest of it. This is the single most important thing about remembering — and the reason it can confidently produce things that were never there.",
+      "science": "Pattern completion is a property of recurrent networks: give them part of a learned pattern and they settle into the whole of it. The settling does not distinguish 'stored' from 'plausible'.",
+      "activate": [
+        "hippocampus",
+        "entorhinal"
+      ],
+      "intensity": 1.0,
+      "hold": 2.6,
+      "stage": "complete",
+      "camera": {
+        "move": "orbit",
+        "region": "hippocampus",
+        "duration": 2.6
+      },
+      "causal": true,
+      "kind": "loop"
+    },
+    {
+      "id": "reinstate-visual",
+      "time": 6.3,
+      "title": "Sensory cortex is re-engaged",
+      "explanation": "Remembering what something looked like partly switches the seeing parts back on. That overlap is why a vivid memory feels almost like looking.",
+      "science": "Retrieval-related reactivation of sensory cortex is well documented, and the pattern of reactivation can indicate what kind of content is being recalled.",
+      "source": "hippocampus",
+      "target": "fusiform",
+      "intensity": 0.9,
+      "hold": 2.4,
+      "stage": "reinstate",
+      "camera": {
+        "move": "focus",
+        "region": "fusiform",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "reinstate-object",
+      "time": 6.9,
+      "title": "Objects are reinstated",
+      "explanation": "Things you stored well come back easily. Things you barely registered come back vague, or not at all.",
+      "source": "hippocampus",
+      "target": "object_cortex",
+      "intensity": 0.75,
+      "hold": 2.2,
+      "stage": "reinstate",
+      "causal": true,
+      "kind": "feedback",
+      "mods": {
+        "sensoryNoise": -0.3,
+        "attention": 0.2
+      }
+    },
+    {
+      "id": "scene",
+      "time": 7.4,
+      "title": "A scene is constructed",
+      "explanation": "The fragments get assembled into a coherent place. Assembling fills gaps with what is typical — a table usually has a chair.",
+      "science": "Remembering and imagining recruit substantially overlapping networks, which is part of why the two can be confused.",
+      "source": "hippocampus",
+      "target": "precuneus",
+      "activate": [
+        "parietal"
+      ],
+      "intensity": 0.9,
+      "hold": 2.4,
+      "stage": "reinstate",
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "inference",
+      "time": 8.0,
+      "title": "Inference fills the gaps",
+      "explanation": "Whatever you did not store gets supplied by general knowledge. The result is seamless. Nothing marks the invented parts as invented.",
+      "science": "This is the mechanism behind many false memories. The system is not malfunctioning; filling gaps with likely content is usually the right thing to do.",
+      "source": "temporoparietal_lang",
+      "target": "precuneus",
+      "intensity": 0.7,
+      "hold": 2.2,
+      "stage": "reinstate",
+      "causal": true,
+      "kind": "modulatory",
+      "mods": {
+        "sensoryNoise": 0.3,
+        "memoryLoad": 0.25
+      }
+    },
+    {
+      "id": "evaluate",
+      "time": 8.7,
+      "title": "Does this answer the question?",
+      "explanation": "Something checks whether what came back actually answers the question. If it does not, the search runs again.",
+      "source": "precuneus",
+      "target": "dlpfc",
+      "intensity": 0.85,
+      "hold": 2.0,
+      "stage": "evaluate",
+      "camera": {
+        "move": "focus",
+        "region": "dlpfc",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "confidence",
+      "time": 9.5,
+      "title": "Confidence is assigned",
+      "explanation": "A feeling of certainty gets attached. Crucially, that feeling tracks how smooth and coherent the answer was — not whether it was right.",
+      "science": "Confidence and accuracy are correlated but dissociable. Vivid, confidently held memories can be substantially wrong, and the vividness does not warn you.",
+      "activate": [
+        "dlpfc",
+        "acc",
+        "precuneus"
+      ],
+      "intensity": 0.8,
+      "hold": 1.6,
+      "stage": "evaluate",
+      "causal": true,
+      "kind": "loop",
+      "mods": {
+        "sensoryNoise": -0.2
+      }
+    },
+    {
+      "id": "reencode",
+      "time": 10.4,
+      "title": "And the memory is changed",
+      "explanation": "And remembering it has changed it. The version you now hold includes what you just made up.",
+      "source": "dlpfc",
+      "target": "hippocampus",
+      "intensity": 0.7,
+      "hold": 0.8,
+      "stage": "evaluate",
+      "camera": {
+        "move": "overview",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "loop"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "r1",
+      "label": "A partial cue",
+      "detail": "You never start from the memory. You start from a fragment of it.",
+      "regions": [
+        "temporoparietal_lang"
+      ],
+      "event": "cue"
+    },
+    {
+      "id": "r2",
+      "label": "A retrieval goal",
+      "detail": "The question defines what will count as an answer.",
+      "regions": [
+        "dlpfc"
+      ],
+      "event": "goal"
+    },
+    {
+      "id": "r3",
+      "label": "Query",
+      "detail": "Something queries memory, and retries when it comes back empty.",
+      "regions": [
+        "dlpfc",
+        "hippocampus"
+      ],
+      "event": "search"
+    },
+    {
+      "id": "r4",
+      "label": "Pattern completion",
+      "detail": "A partial cue settles into a whole stored pattern.",
+      "regions": [
+        "hippocampus",
+        "entorhinal"
+      ],
+      "event": "complete"
+    },
+    {
+      "id": "r5",
+      "label": "Sensory reinstatement",
+      "detail": "The parts that originally did the seeing get switched back on.",
+      "regions": [
+        "fusiform",
+        "object_cortex"
+      ],
+      "event": "reinstate-visual"
+    },
+    {
+      "id": "r6",
+      "label": "Scene construction",
+      "detail": "Fragments get assembled into a coherent whole, and the gaps get filled.",
+      "regions": [
+        "precuneus",
+        "parietal"
+      ],
+      "event": "scene"
+    },
+    {
+      "id": "r7",
+      "label": "Evaluation and confidence",
+      "detail": "The result gets a confidence that tracks coherence, not truth.",
+      "regions": [
+        "dlpfc",
+        "acc"
+      ],
+      "event": "confidence"
+    },
+    {
+      "id": "r8",
+      "label": "Re-encoding",
+      "detail": "Remembering it has now changed what is stored.",
+      "regions": [
+        "hippocampus"
+      ],
+      "event": "reencode"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Recall is reconstructive. People reliably report details consistent with the gist of an event that were not present in it."
+    },
+    {
+      "tier": "known",
+      "text": "Retrieving visual content partly reactivates visual cortex, and the pattern of reactivation carries information about what is being recalled."
+    },
+    {
+      "tier": "known",
+      "text": "Remembering and imagining engage substantially overlapping brain networks."
+    },
+    {
+      "tier": "known",
+      "text": "Subjective confidence in a memory is correlated with, but clearly dissociable from, its accuracy."
+    },
+    {
+      "tier": "simplified",
+      "text": "We separate 'strongly encoded', 'weakly encoded', 'inferred' and 'missing' into four clean categories. Real retrieval is graded and continuous across that whole range."
+    },
+    {
+      "tier": "simplified",
+      "text": "The search is drawn as one query. Retrieval is typically iterative, with the cue reformulated several times."
+    },
+    {
+      "tier": "conceptual",
+      "text": "The scene-reconstruction visual is a representation of a computational process, not an image anyone's brain produced. The simulation does not have access to what you actually remembered — it responds to what you reported."
+    }
+  ],
+  "references": [
+    {
+      "label": "Reconstructive memory",
+      "note": "A long line of work from early studies of serial reproduction onward, showing that recall is shaped by schemas and expectations."
+    },
+    {
+      "label": "Cortical reinstatement",
+      "note": "Findings that retrieval reactivates the sensory regions engaged during the original experience."
+    },
+    {
+      "label": "False memory",
+      "note": "Experimental demonstrations that confidently held, vividly experienced memories can be substantially inaccurate."
+    },
+    {
+      "label": "Scene construction",
+      "note": "Work linking hippocampal and medial parietal regions to constructing coherent spatial scenes during both memory and imagination."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "accuracy",
+      "label": "Modelled accuracy",
+      "base": 0.6,
+      "mods": {
+        "attention": 0.3,
+        "memoryLoad": -0.35,
+        "sensoryNoise": -0.3,
+        "difficulty": -0.2
+      },
+      "note": "How much of what comes back actually matches what you saw.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "construction",
+      "label": "Share that is constructed",
+      "base": 0.4,
+      "mods": {
+        "memoryLoad": 0.35,
+        "sensoryNoise": 0.3,
+        "attention": -0.25
+      },
+      "note": "How much of it was supplied by guessing rather than remembering.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "vividness",
+      "label": "Subjective vividness",
+      "base": 0.7,
+      "mods": {
+        "novelty": 0.2,
+        "attention": 0.2
+      },
+      "note": "How vivid it feels. Note that this barely tracks accuracy — which is the whole point.",
+      "polarity": "neutral"
+    }
+  ],
+  "outcome": {
+    "headline": "Remembering",
+    "body": "A fragment triggered a stored pattern, the seeing parts switched back on, and the gaps got filled with whatever was plausible. The result arrived as one seamless experience with nothing to say which parts came from the room.",
+    "insight": "From the inside you cannot tell which parts you remembered and which parts you just built. The confidence you feel was calculated from how smoothly it came together — and smooth is exactly what making things up produces."
+  },
+  "companion": "recall"
+}

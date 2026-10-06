@@ -1,0 +1,455 @@
+{
+  "id": "attention",
+  "code": "FOCUS",
+  "title": "Paying attention",
+  "subtitle": "Selecting a little, discarding a lot",
+  "question": "What happens when you concentrate on one thing?",
+  "duration": 11.0,
+  "estimate": "3 min",
+  "lens": "attention",
+  "accent": "blue",
+  "teaser": "Count the blue ones. Then find out what you missed while counting.",
+  "intro": "Attention usually gets described as a spotlight. It is closer to a competition. Lots of things are being processed at once, and attention is what tips the contest toward whatever matters right now. The price of winning that contest is everything else.",
+  "stages": [
+    {
+      "id": "goal",
+      "label": "Setting the goal",
+      "time": 0
+    },
+    {
+      "id": "bias",
+      "label": "Biasing the system",
+      "time": 2.0
+    },
+    {
+      "id": "select",
+      "label": "Selection",
+      "time": 4.2
+    },
+    {
+      "id": "cost",
+      "label": "The cost",
+      "time": 7.0
+    },
+    {
+      "id": "reorient",
+      "label": "Interruption",
+      "time": 8.8
+    }
+  ],
+  "events": [
+    {
+      "id": "task",
+      "time": 0,
+      "title": "A goal is held",
+      "explanation": "'Count the blue ones' has to be actively held in mind for the whole task. Nothing stores it for you.",
+      "science": "Goal maintenance is effortful and decays. This is why instructions are lost when a task runs long or when something interrupts.",
+      "activate": [
+        "dlpfc"
+      ],
+      "intensity": 0.9,
+      "sustain": true,
+      "stage": "goal",
+      "camera": {
+        "move": "focus",
+        "region": "dlpfc",
+        "duration": 1.8
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "attention": 0.3,
+        "memoryLoad": -0.25
+      }
+    },
+    {
+      "id": "goal-fef",
+      "time": 1.1,
+      "title": "The goal becomes a spatial priority",
+      "explanation": "The front of your brain turns that goal into a bias — toward certain places, and toward the colour blue.",
+      "source": "dlpfc",
+      "target": "fef",
+      "intensity": 0.85,
+      "hold": 3.0,
+      "stage": "goal",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "attention": 0.3
+      }
+    },
+    {
+      "id": "fef-par",
+      "time": 1.9,
+      "title": "A priority map forms",
+      "explanation": "A running ranking forms of what matters where. Not what is brightest; what is relevant.",
+      "science": "'Priority map' is a computational description. It is supported by the way parietal activity tracks behavioural relevance rather than raw stimulus intensity.",
+      "source": "fef",
+      "target": "parietal",
+      "intensity": 0.9,
+      "hold": 3.5,
+      "stage": "bias",
+      "camera": {
+        "move": "focus",
+        "region": "parietal",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "attention": 0.3,
+        "distraction": -0.3
+      }
+    },
+    {
+      "id": "bias-down",
+      "time": 2.6,
+      "title": "Early vision is retuned",
+      "explanation": "Your visual system is retuned before anything appears. Blue things, wherever they are, will now get a head start.",
+      "science": "Attentional modulation of early visual cortex is measurable in the absence of any stimulus change. Attention changes the receiver, not just the selection.",
+      "source": "parietal",
+      "target": "v1",
+      "intensity": 0.8,
+      "hold": 3.5,
+      "stage": "bias",
+      "causal": true,
+      "kind": "modulatory",
+      "mods": {
+        "attention": 0.4
+      }
+    },
+    {
+      "id": "bias-feature",
+      "time": 3.0,
+      "title": "Feature bias",
+      "explanation": "The bias is for the colour itself, across the whole display — not just one spot.",
+      "source": "parietal",
+      "target": "visual_feature",
+      "intensity": 0.75,
+      "hold": 3.5,
+      "stage": "bias",
+      "kind": "modulatory",
+      "mods": {
+        "attention": 0.35
+      }
+    },
+    {
+      "id": "input",
+      "time": 4.3,
+      "title": "The scene arrives",
+      "explanation": "Everything on screen gets processed. Attention does not stop things entering. It decides which ones win.",
+      "source": "lgn",
+      "target": "v1",
+      "activate": [
+        "retina",
+        "visual_feature",
+        "mt"
+      ],
+      "intensity": 0.95,
+      "hold": 3.0,
+      "stage": "select",
+      "camera": {
+        "move": "focus",
+        "region": "v1",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "compete",
+      "time": 5.0,
+      "title": "Competition",
+      "explanation": "Targets and distractors compete. The ones you biased get an advantage and push the others down.",
+      "science": "Biased-competition accounts explain why two objects in the same receptive field interfere with each other, and why attending to one largely removes the interference.",
+      "source": "v1",
+      "target": "visual_feature",
+      "intensity": 0.9,
+      "hold": 2.5,
+      "stage": "select",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "distraction": -0.35,
+        "difficulty": -0.25
+      }
+    },
+    {
+      "id": "track",
+      "time": 5.8,
+      "title": "Tracking and counting",
+      "explanation": "Keeping a running count means holding a number and updating it while everything keeps moving. That is real work.",
+      "source": "visual_feature",
+      "target": "parietal",
+      "activate": [
+        "dlpfc",
+        "mt"
+      ],
+      "intensity": 0.9,
+      "hold": 2.5,
+      "stage": "select",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "memoryLoad": -0.3,
+        "difficulty": -0.2
+      }
+    },
+    {
+      "id": "arousal",
+      "time": 6.4,
+      "title": "Global gain",
+      "explanation": "How alert you are changes how strongly the whole brain responds. A setting, not a message.",
+      "source": "locus_coeruleus",
+      "target": "dlpfc",
+      "intensity": 0.6,
+      "hold": 2.0,
+      "stage": "select",
+      "kind": "modulatory",
+      "mods": {
+        "attention": 0.3,
+        "novelty": 0.2
+      }
+    },
+    {
+      "id": "cost",
+      "time": 7.2,
+      "title": "What was suppressed",
+      "explanation": "The things that lost were still built. They just never got strong enough for you to be able to report them.",
+      "science": "This is the standard account of inattentional blindness: the unattended event was processed to some depth, but never won access to the systems that would let you report it.",
+      "activate": [
+        "v1",
+        "visual_feature",
+        "object_cortex"
+      ],
+      "intensity": 0.3,
+      "hold": 1.6,
+      "stage": "cost",
+      "camera": {
+        "move": "orbit",
+        "region": "visual_feature",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "loop"
+    },
+    {
+      "id": "surprise",
+      "time": 8.9,
+      "title": "An interruption",
+      "explanation": "Something unexpected and attention-grabbing appears. A more automatic system reacts and signals that your goal might be wrong.",
+      "source": "tpj",
+      "target": "dlpfc",
+      "activate": [
+        "tpj",
+        "superior_colliculus"
+      ],
+      "intensity": 0.95,
+      "hold": 1.4,
+      "stage": "reorient",
+      "camera": {
+        "move": "focus",
+        "region": "tpj",
+        "duration": 1.4
+      },
+      "causal": true,
+      "kind": "burst",
+      "mods": {
+        "novelty": 0.45,
+        "attention": -0.2
+      }
+    },
+    {
+      "id": "reorient",
+      "time": 9.6,
+      "title": "Reorienting",
+      "explanation": "Priority shifts. The count you were holding becomes the first thing likely to get dropped.",
+      "source": "tpj",
+      "target": "parietal",
+      "intensity": 0.9,
+      "hold": 1.2,
+      "stage": "reorient",
+      "causal": true,
+      "kind": "burst",
+      "mods": {
+        "novelty": 0.4
+      }
+    },
+    {
+      "id": "resettle",
+      "time": 10.2,
+      "title": "Back to the task",
+      "explanation": "The goal gets put back. Putting it back is not free — that is where the cost of being interrupted comes from.",
+      "source": "dlpfc",
+      "target": "parietal",
+      "intensity": 0.8,
+      "hold": 0.8,
+      "stage": "reorient",
+      "camera": {
+        "move": "overview",
+        "duration": 2.2
+      },
+      "causal": true,
+      "kind": "modulatory"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "a1",
+      "label": "A goal is held",
+      "detail": "The instruction has to be actively held. It fades if nothing holds it.",
+      "regions": [
+        "dlpfc"
+      ],
+      "event": "task"
+    },
+    {
+      "id": "a2",
+      "label": "The goal becomes a bias",
+      "detail": "That goal gets turned into a bias toward certain places and features.",
+      "regions": [
+        "fef",
+        "parietal"
+      ],
+      "event": "fef-par"
+    },
+    {
+      "id": "a3",
+      "label": "Sensory cortex is retuned",
+      "detail": "Your visual system is retuned before the display even appears.",
+      "regions": [
+        "v1",
+        "visual_feature"
+      ],
+      "event": "bias-down"
+    },
+    {
+      "id": "a4",
+      "label": "Everything is processed",
+      "detail": "Everything gets processed. Attention does not block things at the door.",
+      "regions": [
+        "v1",
+        "mt",
+        "visual_feature"
+      ],
+      "event": "input"
+    },
+    {
+      "id": "a5",
+      "label": "Biased competition resolves",
+      "detail": "The biased things win the competition and reach the point where you can report them.",
+      "regions": [
+        "visual_feature",
+        "parietal"
+      ],
+      "event": "compete"
+    },
+    {
+      "id": "a6",
+      "label": "The losers stay invisible",
+      "detail": "The losers were built and thrown away. You cannot report something that never won.",
+      "regions": [
+        "object_cortex"
+      ],
+      "event": "cost"
+    },
+    {
+      "id": "a7",
+      "label": "Interruption overrides the goal",
+      "detail": "A surprising event can force the whole thing to be reallocated, whatever you intended.",
+      "regions": [
+        "tpj",
+        "parietal"
+      ],
+      "event": "surprise"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Attending to a location or feature increases responses in visual cortex to stimuli matching that location or feature."
+    },
+    {
+      "tier": "known",
+      "text": "People routinely fail to report salient, unexpected events while performing an attentionally demanding task — a robust and widely replicated finding."
+    },
+    {
+      "tier": "known",
+      "text": "Frontal and parietal regions are reliably engaged during goal-directed attention tasks, and a more ventral, right-lateralised network responds to unexpected relevant events."
+    },
+    {
+      "tier": "simplified",
+      "text": "We separate 'goal-directed' and 'stimulus-driven' attention into two clean systems. The two interact continuously and share nodes."
+    },
+    {
+      "tier": "simplified",
+      "text": "The spotlight metaphor is used in the interface because it is intuitive. Biased competition is the better description, and is what the simulation actually illustrates."
+    },
+    {
+      "tier": "conceptual",
+      "text": "Attention is not a substance you have a limited amount of. Describing it as a resource is a useful shorthand for a competitive process, not a claim about brain fuel."
+    },
+    {
+      "tier": "conceptual",
+      "text": "The levels shown are generated by this scenario file. Nothing here measures your attention."
+    }
+  ],
+  "references": [
+    {
+      "label": "Biased competition",
+      "note": "An account in which attention resolves competition between simultaneously active representations rather than filtering input."
+    },
+    {
+      "label": "Inattentional blindness",
+      "note": "Classic demonstrations that observers engaged in a counting task fail to notice conspicuous unexpected events."
+    },
+    {
+      "label": "Dorsal and ventral attention networks",
+      "note": "A framework distinguishing goal-directed orienting from stimulus-driven reorienting."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "selectivity",
+      "label": "Target selectivity",
+      "base": 0.7,
+      "mods": {
+        "attention": 0.4,
+        "distraction": -0.35,
+        "difficulty": -0.2
+      },
+      "note": "How strongly the things you are looking for beat the things you are not.",
+      "polarity": "good-high"
+    },
+    {
+      "id": "missrate",
+      "label": "Chance of missing the unexpected",
+      "base": 0.55,
+      "mods": {
+        "attention": 0.3,
+        "difficulty": 0.3,
+        "novelty": -0.3
+      },
+      "note": "How likely you are to miss something unexpected. Concentrating harder makes this worse, not better.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "recovery",
+      "label": "Recovery after interruption",
+      "base": 0.6,
+      "mods": {
+        "distraction": -0.4,
+        "memoryLoad": -0.3,
+        "attention": 0.2
+      },
+      "note": "How easily you get back on task after something pulls you away.",
+      "polarity": "good-high"
+    }
+  ],
+  "outcome": {
+    "headline": "Attending",
+    "body": "Holding a goal changed how your eyes and brain responded before anything appeared. The things you did not count were not blocked at the door — they were built, they lost, and they were thrown away.",
+    "insight": "The sharper your focus, the more you miss. That is not a fault in the system. That is what choosing means."
+  },
+  "companion": "attention"
+}

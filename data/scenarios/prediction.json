@@ -1,0 +1,428 @@
+{
+  "id": "prediction",
+  "code": "RECOGNIZE",
+  "title": "The brain is guessing",
+  "subtitle": "Perception as evidence plus expectation",
+  "question": "What happens when the input is ambiguous?",
+  "duration": 11.2,
+  "estimate": "3 min",
+  "lens": "prediction",
+  "accent": "violet",
+  "teaser": "The same blurry image, two different hints, two different things seen.",
+  "intro": "Your brain does not wait until it has enough evidence. It commits to an answer using whatever is available, including everything it expected before the evidence arrived. When the evidence is weak, expectation does more of the work — and you cannot feel the difference.",
+  "stages": [
+    {
+      "id": "evidence",
+      "label": "Weak evidence",
+      "time": 0
+    },
+    {
+      "id": "prior",
+      "label": "Prior context",
+      "time": 2.4
+    },
+    {
+      "id": "compete",
+      "label": "Competing hypotheses",
+      "time": 4.2
+    },
+    {
+      "id": "commit",
+      "label": "Commitment",
+      "time": 6.4
+    },
+    {
+      "id": "revise",
+      "label": "New context",
+      "time": 8.4
+    }
+  ],
+  "events": [
+    {
+      "id": "noisy",
+      "time": 0,
+      "title": "Degraded input arrives",
+      "explanation": "The signal is weak, blurred and partly hidden. The details coming out of it genuinely do not settle the question.",
+      "source": "lgn",
+      "target": "v1",
+      "activate": [
+        "retina",
+        "v1"
+      ],
+      "intensity": 0.7,
+      "hold": 2.6,
+      "stage": "evidence",
+      "camera": {
+        "move": "focus",
+        "region": "v1",
+        "duration": 1.7
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "sensoryNoise": -0.4
+      }
+    },
+    {
+      "id": "features-weak",
+      "time": 1.0,
+      "title": "Features, but not enough of them",
+      "explanation": "Some contours and surfaces get worked out. Several completely different things would still fit.",
+      "source": "v1",
+      "target": "visual_feature",
+      "intensity": 0.65,
+      "hold": 2.4,
+      "stage": "evidence",
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "sensoryNoise": -0.35
+      }
+    },
+    {
+      "id": "prior",
+      "time": 2.5,
+      "title": "Expectation is already there",
+      "explanation": "An expectation is already there, built from context and recent experience, before the picture has been resolved. It is not added afterwards.",
+      "science": "Expectation-related activity appears in sensory cortex before the expected stimulus arrives. The prediction is not a post-hoc interpretation.",
+      "activate": [
+        "dlpfc",
+        "precuneus",
+        "hippocampus"
+      ],
+      "intensity": 0.85,
+      "sustain": true,
+      "stage": "prior",
+      "camera": {
+        "move": "focus",
+        "region": "dlpfc",
+        "duration": 1.6
+      },
+      "causal": true,
+      "kind": "forward",
+      "mods": {
+        "novelty": -0.3
+      }
+    },
+    {
+      "id": "prior-down",
+      "time": 3.2,
+      "title": "The expectation travels down",
+      "explanation": "Higher stages send guesses downward, shaping what counts as evidence for what.",
+      "source": "dlpfc",
+      "target": "object_cortex",
+      "intensity": 0.8,
+      "hold": 2.6,
+      "stage": "prior",
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "prior-deeper",
+      "time": 3.7,
+      "title": "All the way down",
+      "explanation": "That influence reaches all the way back to early vision and the gate in the middle.",
+      "source": "object_cortex",
+      "target": "visual_feature",
+      "intensity": 0.7,
+      "hold": 2.4,
+      "stage": "prior",
+      "kind": "feedback"
+    },
+    {
+      "id": "compete",
+      "time": 4.3,
+      "title": "Hypotheses compete",
+      "explanation": "Several answers are partly active at once. What that feels like is flickering between readings, not seeing a blur.",
+      "science": "With genuinely bistable stimuli, perception alternates rather than settling on an average. The system commits to one interpretation at a time.",
+      "activate": [
+        "object_cortex",
+        "visual_feature",
+        "fusiform"
+      ],
+      "intensity": 0.8,
+      "hold": 2.4,
+      "stage": "compete",
+      "camera": {
+        "move": "orbit",
+        "region": "object_cortex",
+        "duration": 2.6
+      },
+      "causal": true,
+      "kind": "loop",
+      "mods": {
+        "sensoryNoise": 0.3
+      }
+    },
+    {
+      "id": "error",
+      "time": 5.2,
+      "title": "Mismatch is propagated",
+      "explanation": "Only the part that did not match the guess needs to travel back up. The rest was already predicted.",
+      "science": "Predictive-processing accounts propose that ascending signals carry prediction error rather than raw sensory data. The framework is influential; its detailed cortical implementation is not settled.",
+      "source": "visual_feature",
+      "target": "object_cortex",
+      "intensity": 0.85,
+      "hold": 2.0,
+      "stage": "compete",
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "commit",
+      "time": 6.5,
+      "title": "One interpretation wins",
+      "explanation": "One answer wins. From this moment that is simply what you see — and the alternatives get hard to get back.",
+      "source": "object_cortex",
+      "target": "fusiform",
+      "intensity": 0.95,
+      "hold": 2.2,
+      "stage": "commit",
+      "camera": {
+        "move": "focus",
+        "region": "fusiform",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "forward"
+    },
+    {
+      "id": "lock",
+      "time": 7.2,
+      "title": "And it locks in",
+      "explanation": "Feedback reinforces the winner and pushes down the evidence for the others. This is why you cannot un-see it.",
+      "source": "fusiform",
+      "target": "visual_feature",
+      "intensity": 0.8,
+      "hold": 2.0,
+      "stage": "commit",
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "new-context",
+      "time": 8.5,
+      "title": "The context changes",
+      "explanation": "You are told what it is, or you see where it is. The picture itself has not changed at all.",
+      "activate": [
+        "temporoparietal_lang",
+        "dlpfc",
+        "hippocampus"
+      ],
+      "intensity": 0.9,
+      "hold": 2.0,
+      "stage": "revise",
+      "camera": {
+        "move": "focus",
+        "region": "dlpfc",
+        "duration": 1.5
+      },
+      "causal": true,
+      "kind": "burst",
+      "mods": {
+        "novelty": 0.3
+      }
+    },
+    {
+      "id": "reinterpret",
+      "time": 9.3,
+      "title": "The percept reorganises",
+      "explanation": "A new guess travels down and the same picture resolves into something else. What you see changed because what you expected changed.",
+      "science": "This is one of the cleanest demonstrations that perception is not a readout of the input. Identical photons, different experience.",
+      "source": "dlpfc",
+      "target": "visual_feature",
+      "activate": [
+        "object_cortex",
+        "fusiform",
+        "v1"
+      ],
+      "intensity": 0.95,
+      "hold": 1.8,
+      "stage": "revise",
+      "causal": true,
+      "kind": "feedback"
+    },
+    {
+      "id": "permanent",
+      "time": 10.2,
+      "title": "And it stays that way",
+      "explanation": "And it stays that way. Now that you have the right expectation, the image will always look like that. It is not easy to undo.",
+      "activate": [
+        "object_cortex",
+        "hippocampus",
+        "fusiform"
+      ],
+      "intensity": 0.7,
+      "hold": 0.9,
+      "stage": "revise",
+      "camera": {
+        "move": "overview",
+        "duration": 2.4
+      },
+      "causal": true,
+      "kind": "loop"
+    }
+  ],
+  "causalChain": [
+    {
+      "id": "p1",
+      "label": "Weak evidence arrives",
+      "detail": "The picture genuinely does not settle what is out there.",
+      "regions": [
+        "v1",
+        "visual_feature"
+      ],
+      "event": "noisy"
+    },
+    {
+      "id": "p2",
+      "label": "An expectation already exists",
+      "detail": "An expectation already exists before anything is resolved.",
+      "regions": [
+        "dlpfc",
+        "hippocampus",
+        "precuneus"
+      ],
+      "event": "prior"
+    },
+    {
+      "id": "p3",
+      "label": "Prediction propagates downward",
+      "detail": "That expectation travels down and shapes what counts as evidence.",
+      "regions": [
+        "object_cortex",
+        "visual_feature"
+      ],
+      "event": "prior-down"
+    },
+    {
+      "id": "p4",
+      "label": "Hypotheses compete",
+      "detail": "Several answers take turns rather than averaging out.",
+      "regions": [
+        "object_cortex",
+        "fusiform"
+      ],
+      "event": "compete"
+    },
+    {
+      "id": "p5",
+      "label": "Mismatch travels upward",
+      "detail": "Only what the guess failed to explain travels back up.",
+      "regions": [
+        "visual_feature",
+        "object_cortex"
+      ],
+      "event": "error"
+    },
+    {
+      "id": "p6",
+      "label": "The system commits",
+      "detail": "One answer wins and gets reinforced.",
+      "regions": [
+        "fusiform"
+      ],
+      "event": "commit"
+    },
+    {
+      "id": "p7",
+      "label": "New context, new percept",
+      "detail": "Same picture, different expectation, different experience.",
+      "regions": [
+        "dlpfc",
+        "visual_feature"
+      ],
+      "event": "reinterpret"
+    }
+  ],
+  "science": [
+    {
+      "tier": "known",
+      "text": "Descending connections from higher to lower sensory areas are numerous, and in many pathways outnumber the ascending ones."
+    },
+    {
+      "tier": "known",
+      "text": "Expectation-related activity can be detected in sensory cortex before the expected stimulus arrives."
+    },
+    {
+      "tier": "known",
+      "text": "With bistable or degraded stimuli, perception alternates between discrete interpretations rather than settling on an intermediate one."
+    },
+    {
+      "tier": "known",
+      "text": "Prior knowledge dramatically improves recognition of degraded images, and the improvement persists once acquired."
+    },
+    {
+      "tier": "simplified",
+      "text": "We show prediction descending and error ascending as two tidy opposed streams. Whether cortical signalling divides this cleanly is an open question."
+    },
+    {
+      "tier": "conceptual",
+      "text": "Predictive processing is a framework, not an established mechanism. It organises a lot of evidence well; the specifics of how cortex implements it are actively debated."
+    },
+    {
+      "tier": "conceptual",
+      "text": "The 'evidence' and 'prior' bars in the interface are parameters of this visualisation. They are not quantities measured anywhere in a brain."
+    }
+  ],
+  "references": [
+    {
+      "label": "Predictive processing",
+      "note": "A family of accounts in which perception combines descending predictions with ascending mismatch signals."
+    },
+    {
+      "label": "Bistable perception",
+      "note": "Studies of ambiguous figures and binocular rivalry showing discrete alternation rather than blending."
+    },
+    {
+      "label": "Perceptual priors",
+      "note": "Demonstrations that knowing what a degraded image depicts permanently changes how it is perceived."
+    },
+    {
+      "label": "Expectation in sensory cortex",
+      "note": "Evidence of anticipatory, stimulus-specific activity preceding expected inputs."
+    }
+  ],
+  "readouts": [
+    {
+      "id": "evidenceWeight",
+      "label": "Weight on evidence",
+      "base": 0.55,
+      "mods": {
+        "sensoryNoise": -0.45,
+        "attention": 0.25
+      },
+      "note": "How much of the answer the model takes from what is actually there.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "priorWeight",
+      "label": "Weight on expectation",
+      "base": 0.45,
+      "mods": {
+        "sensoryNoise": 0.45,
+        "novelty": -0.3
+      },
+      "note": "How much it takes from expectation. The two always add up to the whole thing.",
+      "polarity": "neutral"
+    },
+    {
+      "id": "stability",
+      "label": "Percept stability",
+      "base": 0.6,
+      "mods": {
+        "sensoryNoise": -0.35,
+        "attention": 0.2,
+        "difficulty": -0.2
+      },
+      "note": "How firmly it stays committed to one answer.",
+      "polarity": "neutral"
+    }
+  ],
+  "outcome": {
+    "headline": "Guessing",
+    "body": "The picture never settled the question. An expectation came first, travelled downward, and got combined with weak evidence until something won. Change the expectation and the same picture produces a different experience.",
+    "insight": "You do not see what is there. You see your brain's best current guess about what is there — and it feels exactly the same either way."
+  },
+  "companion": "prediction"
+}
